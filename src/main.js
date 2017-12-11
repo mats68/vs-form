@@ -5,9 +5,12 @@ import App from './App'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.css'
 
-Vue.use(Vuetify)
+import vsForm from '@/components/vs-form'
 
+Vue.use(Vuetify)
 Vue.config.productionTip = false
+
+Vue.component('vs-form', vsForm)
 
 /* eslint-disable no-new */
 new Vue({
