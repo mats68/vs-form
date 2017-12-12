@@ -13,7 +13,7 @@ export default {
   props: {
     startItem: {
       type: String,
-      default: 'form'
+      default: 'root'
     },
     schema: {
       type: Object,

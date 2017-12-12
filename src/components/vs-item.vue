@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <div v-if="!isContainer">
-      <vs-text-field :label="item.label"></vs-text-field>
-    </div>
-    <div v-if="isContainer">
-      <v-layout row wrap :tag="getTag">
-        <v-flex v-for="field in itemList" :key="field.id" :class="colWidth">
-          <vs-text-field :label="field.label"></vs-text-field>
-          <!-- <vs-item :schema="schema" :startIem="field.id"></vs-item> -->
-        </v-flex>
-      </v-layout>
-    </div>
+  <div v-if="root">
+    <v-container fluid grid-list-md>
+      <vs-item :schema="schema" :startItem="startItem" :designMode="designMode" :root="false"></vs-item>
+    </v-container>
+  </div>
+  <v-layout v-else-if="isContainer" :tag="getTag" row wrap>
+    <v-flex v-for="field in itemList" :class="colWidth" :key="field.id">
+      <vs-item :schema="schema" :startItem="field.id" :root="false"></vs-item>
+    </v-flex>
+  </v-layout>
+  <div v-else>
+    <vs-text-field :label="item.label"></vs-text-field>
   </div>
 </template>
 
@@ -30,7 +30,7 @@ export default {
   props: {
     startItem: {
       type: String,
-      default: 'form'
+      default: 'root'
     },
     schema: {
       type: Object,
@@ -39,6 +39,10 @@ export default {
     designMode: {
       type: Boolean,
       default: false
+    },
+    root: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
@@ -70,7 +74,7 @@ export default {
       return this.item && this.item.hasOwnProperty('children')
     },
     colWidth() {
-      return 'xl8'
+      return 'xl'
     },
     getTag() {
       return this.designMode ? 'draggable' : 'div'

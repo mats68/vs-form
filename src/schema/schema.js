@@ -3,7 +3,7 @@ export const schema = {
     name: ''
   },
   components: {
-    form: {
+    root: {
       label: 'Kunden',
       children: ['name', 'vorname']
     },

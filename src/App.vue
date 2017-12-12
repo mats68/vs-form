@@ -25,7 +25,7 @@
       <v-toolbar-title>Schema-Form</v-toolbar-title>
     </v-toolbar>
     <v-content>
-      <vs-form :schema="schema"></vs-form>
+      <vs-item :schema="schema" designMode></vs-item>
       <!-- <vs-form :schema="schema" startItem="tubel"></vs-form> -->
     </v-content>
   </v-app>
