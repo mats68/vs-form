@@ -4,9 +4,9 @@
       <vs-item :schema="schema" :startItem="startItem" :designMode="designMode" :root="false"></vs-item>
     </v-container>
   </div>
-  <v-layout v-else-if="isContainer" :tag="getTag" row wrap>
+  <v-layout v-else-if="isContainer" :tag="getDraggableTag" v-model="itemList" :options="dragOptions">
     <v-flex v-for="field in itemList" :class="colWidth" :key="field.id">
-      <vs-item :schema="schema" :startItem="field.id" :root="false"></vs-item>
+      <vs-item :schema="schema" :startItem="field.id" :designMode="designMode" :root="false"></vs-item>
     </v-flex>
   </v-layout>
   <div v-else>
@@ -58,25 +58,34 @@ export default {
             }
           })
         }
-        console.log(resArray)
         return resArray
       },
       set(value) {
         if (this.designMode && this.item) {
-          Vue.set(this.item, 'children', value.children)
+          let children = value.map(item => item.id)
+          Vue.set(this.internalSchema.components[this.startItem], 'children', children)
+          // Vue.set(this.item, 'children', children)
         }
       }
     },
     item() {
-      return this.schema.components[this.startItem]
+      return this.internalSchema.components[this.startItem]
     },
     isContainer() {
       return this.item && this.item.hasOwnProperty('children')
     },
     colWidth() {
-      return 'xl'
+      return 'xl4'
     },
-    getTag() {
+    dragOptions() {
+      return {
+        animation: 0,
+        group: 'description',
+        disabled: !this.designMode,
+        ghostClass: 'ghost'
+      }
+    },
+    getDraggableTag() {
       return this.designMode ? 'draggable' : 'div'
     }
   },
@@ -92,6 +101,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.ghost {
+  opacity: .5;
+  background: #C8EBFB;
+}
 </style>
