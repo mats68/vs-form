@@ -3,14 +3,23 @@ export const schema = {
     name: ''
   },
   components: {
-    label: 'Kunden',
-    children: ['name']
-  },
-  name: {
-    field: 'name',
-    type: 'text',
-    label: 'Name',
-    placeholder: 'Name eingeben...',
-    xl: 6
+    form: {
+      label: 'Kunden',
+      children: ['name', 'vorname']
+    },
+    name: {
+      field: 'name',
+      type: 'text',
+      label: 'Name',
+      placeholder: 'Name eingeben...',
+      xl: 6
+    },
+    vorname: {
+      field: 'vorname',
+      type: 'text',
+      label: 'Vorname',
+      placeholder: 'Vorname eingeben...',
+      xl: 6
+    },
   }
 }

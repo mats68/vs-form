@@ -25,21 +25,21 @@
       <v-toolbar-title>Schema-Form</v-toolbar-title>
     </v-toolbar>
     <v-content>
-      <v-container fluid fill-height>
-        <v-layout>
-          <vs-form :schema="schema"></vs-form>
-        </v-layout>
-      </v-container>
+      <vs-form :schema="schema"></vs-form>
     </v-content>
   </v-app>
 </template>
 
 <script>
-// import schema from '@/schema/schema'
+import { schema } from 'src/schema/schema'
+
 export default {
   data: () => ({
     drawer: null
   }),
+  computed: {
+    schema: () => { return schema }
+  },
   props: {
     source: String
   }

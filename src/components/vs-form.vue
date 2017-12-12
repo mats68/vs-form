@@ -1,8 +1,6 @@
 <template>
   <v-container fluid grid-list-md>
-    <v-layout row wrap>
-      <vs-item :schema="schema" :startItem="startItem"></vs-item>
-    </v-layout>
+    <vs-item :schema="schema" :startItem="startItem" designMode></vs-item>
   </v-container>
 </template>
 
