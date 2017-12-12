@@ -21,5 +21,12 @@ export const schema = {
       placeholder: 'Vorname eingeben...',
       xl: 6
     },
+    tubel: {
+      field: 'tubel',
+      type: 'text',
+      label: 'tubel',
+      placeholder: 'tubel eingeben...',
+      xl: 6
+    },
   }
 }

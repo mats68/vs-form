@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import draggable from 'vuedraggable'
+
 import VsItem from './vs-item'
 
 export default {
@@ -19,8 +21,14 @@ export default {
     },
     designMode: Boolean
   },
+  computed: {
+    getTag() {
+      return this.designMode ? 'draggable' : 'div'
+    }
+  },
   components: {
-    VsItem
+    VsItem,
+    draggable
   }
 }
 </script>

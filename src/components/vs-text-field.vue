@@ -1,9 +1,11 @@
 <template>
-    <v-text-field name="input-1" label="Label Text" id="testing"></v-text-field>
+    <v-text-field name="input-1" :label="label" id="testing"></v-text-field>
 </template>
 
 <script>
-export default {}
+export default {
+  props: ['label']
+}
 </script>
 
 <style>

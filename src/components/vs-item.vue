@@ -1,20 +1,30 @@
 <template>
-  <v-layout row wrap :tag="getTag">
-    <v-flex v-for="field in list" :key="field.id" :class="colWidth">
-      <vs-text-field></vs-text-field>
-    </v-flex>
-  </v-layout>
+  <div>
+    <div v-if="!isContainer">
+      <vs-text-field :label="item.label"></vs-text-field>
+    </div>
+    <div v-if="isContainer">
+      <v-layout row wrap :tag="getTag">
+        <v-flex v-for="field in itemList" :key="field.id" :class="colWidth">
+          <vs-text-field :label="field.label"></vs-text-field>
+          <!-- <vs-item :schema="schema" :startIem="field.id"></vs-item> -->
+        </v-flex>
+      </v-layout>
+    </div>
+  </div>
 </template>
 
 <script>
+import Vue from 'vue'
 import draggable from 'vuedraggable'
+
 import VsTextField from './vs-text-field'
 
 export default {
   name: 'vs-item',
   data: function() {
     return {
-      values: this.schema.values
+      internalSchema: this.schema
     }
   },
   props: {
@@ -32,8 +42,32 @@ export default {
     }
   },
   computed: {
-    list() {
-      return this.getItemsFromSchema()
+    itemList: {
+      get() {
+        let resArray = []
+        if (this.item && !this.item.hidden) {
+          this.item.children.forEach(item => {
+            let c = this.schema.components[item]
+            if (c && !c.hidden) {
+              c.id = item
+              resArray.push(c)
+            }
+          })
+        }
+        console.log(resArray)
+        return resArray
+      },
+      set(value) {
+        if (this.designMode && this.item) {
+          Vue.set(this.item, 'children', value.children)
+        }
+      }
+    },
+    item() {
+      return this.schema.components[this.startItem]
+    },
+    isContainer() {
+      return this.item && this.item.hasOwnProperty('children')
     },
     colWidth() {
       return 'xl8'
@@ -42,23 +76,7 @@ export default {
       return this.designMode ? 'draggable' : 'div'
     }
   },
-  methods: {
-    getItemsFromSchema() {
-      let resArray = []
-      if (!this.schema.components[this.startItem]) return
-      if (!this.schema.components[this.startItem].hidden) {
-        this.schema.components[this.startItem].children.forEach(item => {
-          let c = this.schema.components[item]
-          if (!c || c.hidden) {
-            return
-          }
-          c.id = item
-          resArray.push(c)
-        })
-      }
-      return resArray
-    }
-  },
+  methods: {},
 
   components: {
     VsTextField,
