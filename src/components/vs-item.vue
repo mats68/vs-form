@@ -1,8 +1,16 @@
 <template>
-  <div v-if="root">
-    <v-container fluid grid-list-md>
+  <component :is="currentView(startItem)" v-bind="currentProperties(startItem)">
+    <vs-container v-if="isContainer" :itemList="itemList" :designMode="designMode">
+      <v-flex v-for="field in itemList" :class="colWidth" :key="field.id">
+        <vs-item v-bind="currentProperties(field.id)"></vs-item>
+      </v-flex>
+    </vs-container>
+  </component>
+
+  <!-- <div v-if="root">
+    <vs-container :itemList="itemList" :designMode="designMode">
       <vs-item :schema="schema" :startItem="startItem" :designMode="designMode" :root="false"></vs-item>
-    </v-container>
+    </vs-container>
   </div>
   <v-layout v-else-if="isContainer" :tag="getDraggableTag" v-model="itemList" :options="dragOptions">
     <v-flex v-for="field in itemList" :class="colWidth" :key="field.id">
@@ -11,20 +19,29 @@
   </v-layout>
   <div v-else>
     <vs-text-field :label="item.label"></vs-text-field>
-  </div>
+  </div> -->
 </template>
 
 <script>
 import Vue from 'vue'
-import draggable from 'vuedraggable'
 
 import VsTextField from './vs-text-field'
+import VsContainer from './vs-container'
+import VsCard from './vs-card'
+import VsForm from './vs-form'
+import VsPanel from './vs-panel'
 
 export default {
   name: 'vs-item',
   data: function() {
     return {
-      internalSchema: this.schema
+      internalSchema: this.schema,
+      views: {
+        text: VsTextField,
+        form: VsForm,
+        card: VsCard,
+        panel: VsPanel
+      }
     }
   },
   props: {
@@ -51,7 +68,7 @@ export default {
         let resArray = []
         if (this.item && !this.item.hidden) {
           this.item.children.forEach(item => {
-            let c = this.schema.components[item]
+            let c = this.internalSchema.components[item]
             if (c && !c.hidden) {
               c.id = item
               resArray.push(c)
@@ -62,9 +79,12 @@ export default {
       },
       set(value) {
         if (this.designMode && this.item) {
-          let children = value.map(item => item.id)
-          Vue.set(this.internalSchema.components[this.startItem], 'children', children)
-          // Vue.set(this.item, 'children', children)
+          const children = value.map(item => item.id)
+          Vue.set(
+            this.internalSchema.components[this.startItem],
+            'children',
+            children
+          )
         }
       }
     },
@@ -75,25 +95,29 @@ export default {
       return this.item && this.item.hasOwnProperty('children')
     },
     colWidth() {
-      return 'xl4'
+      return this.item && this.item.xl ? 'xl' + this.item.xl : 'xl12'
     },
-    dragOptions() {
+  },
+  methods: {
+    currentView(name) {
+      return this.views[this.internalSchema.components[name].type]
+    },
+    currentProperties(name) {
       return {
-        animation: 0,
-        group: 'description',
-        disabled: !this.designMode,
-        ghostClass: 'ghost'
+        schema: this.schema,
+        startItem: name,
+        designMode: this.designMode,
+        root: false
       }
-    },
-    getDraggableTag() {
-      return this.designMode ? 'draggable' : 'div'
     }
   },
-  methods: {},
 
   components: {
     VsTextField,
-    draggable
+    VsForm,
+    VsCard,
+    VsPanel,
+    VsContainer,
   },
   mounted() {
     // console.log(this.values.name)
@@ -101,9 +125,3 @@ export default {
 }
 </script>
 
-<style scoped>
-.ghost {
-  opacity: .5;
-  background: #C8EBFB;
-}
-</style>

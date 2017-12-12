@@ -1,10 +1,19 @@
 <template>
-    <v-text-field name="input-1" :label="label" id="testing"></v-text-field>
+    <v-text-field :label="item.label" id="item.id"></v-text-field>
 </template>
 
 <script>
 export default {
-  props: ['label']
+  props: ['schema', 'startItem'],
+  computed: {
+    item() {
+      return this.schema.components[this.startItem]
+    },
+  },
+  mounted() {
+    // console.log(this.schema, this.startItem)
+  }
+
 }
 </script>
 
