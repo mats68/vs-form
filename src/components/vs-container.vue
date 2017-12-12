@@ -1,6 +1,6 @@
 <template>
   <v-container fluid grid-list-md>
-    <v-layout :tag="getDraggableTag" v-model="itemList" :options="dragOptions">
+    <v-layout row wrap :tag="getDraggableTag" v-model="list" :options="dragOptions">
       <slot></slot>
     </v-layout>
 
@@ -13,6 +13,11 @@ import draggable from 'vuedraggable'
 
 export default {
   props: ['designMode', 'itemList'],
+  data: function () {
+    return {
+      list: this.itemList
+    }
+  },
   computed: {
     dragOptions() {
       return {

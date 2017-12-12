@@ -4,14 +4,14 @@
 
 <script>
 export default {
-  props: ['schema', 'startItem'],
+  props: ['schema', 'node'],
   computed: {
     item() {
-      return this.schema.components[this.startItem]
+      return this.schema.components[this.node]
     },
   },
   mounted() {
-    // console.log(this.schema, this.startItem)
+    // console.log(this.schema, this.node)
   }
 
 }
