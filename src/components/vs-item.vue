@@ -1,7 +1,7 @@
 <template>
   <component v-if="designMode" :is="currentView(node)" v-bind="currentProperties(node)">
     <v-container v-if="isContainer" fluid grid-list-md>
-      <draggable class="layout row wrap dragArea" v-model="itemList" :options="dragOptions" :move="onMove">
+      <draggable class="layout row wrap dragArea" v-model="itemList" :options="dragOptions">
         <v-flex v-for="field in itemList" :class="colWidth(field)" :key="field.id">
           <vs-item v-bind="currentProperties(field.id)"></vs-item>
         </v-flex>
@@ -24,7 +24,6 @@ import Vue from 'vue'
 import draggable from 'vuedraggable'
 
 import VsTextField from './vs-text-field'
-import VsContainer from './vs-container'
 import VsCard from './vs-card'
 import VsForm from './vs-form'
 import VsPanel from './vs-panel'
@@ -98,9 +97,6 @@ export default {
         disabled: !this.designMode
       }
     },
-    getDraggableTag() {
-      return this.designMode ? 'draggable' : 'div'
-    }
   },
   methods: {
     currentView(name) {
@@ -116,18 +112,6 @@ export default {
     },
     colWidth(field) {
       return field && field.xl ? 'xl' + field.xl : 'xl2'
-    },
-    onMove({ relatedContext, draggedContext }) {
-      console.log(relatedContext)
-    },
-    startDrag: function(evt) {
-      console.log('startDrag', evt)
-    },
-    endDrag: function(evt) {
-      console.log('endDrag', evt)
-      // this.canDrag = null
-      // this.targetElement = null
-      // this.futureIndex = null
     }
   },
 
@@ -136,7 +120,6 @@ export default {
     VsForm,
     VsCard,
     VsPanel,
-    VsContainer,
     draggable
   },
   mounted() {

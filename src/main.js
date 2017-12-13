@@ -6,8 +6,11 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.css'
 
 import vsItem from 'src/components/vs-item'
+import Plugintest from 'plugintest'
 
 Vue.use(Vuetify)
+Vue.use(Plugintest)
+
 Vue.config.productionTip = false
 
 Vue.component('vs-item', vsItem)

@@ -1,19 +1,15 @@
 <template>
-    <v-text-field :label="item.label" id="item.id"></v-text-field>
+  <v-text-field :label="label" :id="item.id"></v-text-field>
 </template>
 
 <script>
+import mixin from './vs-item-mixin'
+
 export default {
-  props: ['schema', 'node'],
-  computed: {
-    item() {
-      return this.schema.components[this.node]
-    },
-  },
+  mixins: [mixin],
   mounted() {
     // console.log(this.schema, this.node)
   }
-
 }
 </script>
 
