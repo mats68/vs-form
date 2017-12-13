@@ -1,11 +1,20 @@
 <template>
-  <component :is="currentView(node)" v-bind="currentProperties(node)">
+  <component v-if="designMode" :is="currentView(node)" v-bind="currentProperties(node)">
     <v-container v-if="isContainer" fluid grid-list-md>
       <draggable class="layout row wrap dragArea" v-model="itemList" :options="dragOptions" :move="onMove">
         <v-flex v-for="field in itemList" :class="colWidth(field)" :key="field.id">
           <vs-item v-bind="currentProperties(field.id)"></vs-item>
         </v-flex>
       </draggable>
+    </v-container>
+  </component>
+  <component v-else :is="currentView(node)" v-bind="currentProperties(node)">
+    <v-container v-if="isContainer" fluid grid-list-md>
+      <v-layout row wrap>
+        <v-flex v-for="field in itemList" :class="colWidth(field)" :key="field.id">
+          <vs-item v-bind="currentProperties(field.id)"></vs-item>
+        </v-flex>
+      </v-layout>
     </v-container>
   </component>
 </template>
@@ -137,10 +146,6 @@ export default {
 </script>
 
 <style scoped>
-.ghost {
-  opacity: 0.5;
-  background: #c8ebfb;
-}
 
 .dragArea {
   min-height: 50px;

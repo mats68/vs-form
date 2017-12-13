@@ -9,7 +9,7 @@ export const schema = {
       children: ['panel1', 'panel2'],
     },
     panel1: {
-      label: 'Panel',
+      label: 'Panel1',
       type: 'card',
       children: ['name', 'vorname', 'plz', 'ort'],
       xl: 6
@@ -43,7 +43,7 @@ export const schema = {
       xl: 6
     },
     panel2: {
-      label: 'Panel',
+      label: 'Panel1',
       type: 'card',
       children: ['name1', 'vorname1', 'strasse1'],
       xl: 6

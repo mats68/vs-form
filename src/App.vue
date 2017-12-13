@@ -23,9 +23,14 @@
     <v-toolbar color="indigo" dark app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>Schema-Form</v-toolbar-title>
+      <!-- <v-text-field prepend-icon="search" hide-details single-line></v-text-field> -->
+      <v-checkbox hide-details v-model="designMode" label="Drag & Drop"></v-checkbox>
+      <v-btn icon>
+        <v-icon>search</v-icon>
+      </v-btn>
     </v-toolbar>
     <v-content>
-      <vs-item :schema="schema" designMode></vs-item>
+      <vs-item :schema="schema" :designMode="designMode"></vs-item>
       <!-- <vs-form :schema="schema" node="tubel"></vs-form> -->
     </v-content>
   </v-app>
@@ -36,10 +41,13 @@ import { schema } from 'src/schema/schema'
 
 export default {
   data: () => ({
-    drawer: null
+    drawer: null,
+    designMode: true
   }),
   computed: {
-    schema: () => { return schema }
+    schema: () => {
+      return schema
+    }
   },
   props: {
     source: String
