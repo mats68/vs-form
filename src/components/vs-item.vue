@@ -23,10 +23,15 @@
 import Vue from 'vue'
 import draggable from 'vuedraggable'
 
-import VsTextField from './vs-text-field'
-import VsCard from './vs-card'
-import VsForm from './vs-form'
-import VsPanel from './vs-panel'
+// Containers
+import VsForm from 'src/components/containers/vs-form'
+import VsCard from 'src/components/containers/vs-card'
+import VsPanel from 'src/components/containers/vs-panel'
+
+// Fields
+import VsTextField from 'src/components/fields/vs-text-field'
+import VsSlider from 'src/components/fields/vs-slider'
+import VsCheckbox from 'src/components/fields/vs-checkbox'
 
 export default {
   name: 'vs-item',
@@ -34,10 +39,12 @@ export default {
     return {
       internalSchema: this.schema,
       views: {
-        text: VsTextField,
         form: VsForm,
         card: VsCard,
-        panel: VsPanel
+        panel: VsPanel,
+        text: VsTextField,
+        checkbox: VsCheckbox,
+        slider: VsSlider,
       }
     }
   },
@@ -116,11 +123,13 @@ export default {
   },
 
   components: {
-    VsTextField,
+    draggable,
     VsForm,
     VsCard,
     VsPanel,
-    draggable
+    VsTextField,
+    VsSlider,
+    VsCheckbox
   },
   mounted() {
     // console.log(this.values.name)

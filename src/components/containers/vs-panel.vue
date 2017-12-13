@@ -5,8 +5,10 @@
 </template>
 
 <script>
-export default {
+import mixin from 'src/components/vs-item-mixin'
 
+export default {
+  mixins: [mixin]
 }
 </script>
 

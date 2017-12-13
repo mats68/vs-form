@@ -6,13 +6,10 @@
 </template>
 
 <script>
+import mixin from 'src/components/vs-item-mixin'
+
 export default {
-  props: ['schema', 'node'],
-  computed: {
-    item() {
-      return this.schema.components[this.node]
-    }
-  }
+  mixins: [mixin]
 }
 </script>
 

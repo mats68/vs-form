@@ -31,6 +31,7 @@
     </v-toolbar>
     <v-content>
       <vs-item :schema="schema" :designMode="designMode"></vs-item>
+      {{schema.values}}
       <!-- <vs-form :schema="schema" node="tubel"></vs-form> -->
     </v-content>
   </v-app>
