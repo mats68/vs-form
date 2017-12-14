@@ -30,15 +30,14 @@
       </v-btn>
     </v-toolbar>
     <v-content>
-      <vs-item :schema="schema" :designMode="designMode"></vs-item>
-      {{schema.values}}
-      <!-- <vs-form :schema="schema" node="tubel"></vs-form> -->
+      <vs-form :schema="schema" :designMode="designMode"></vs-form>
     </v-content>
   </v-app>
 </template>
 
 <script>
 import { schema } from 'src/schema/schema'
+import {formatJSON} from 'src/utils/utils'
 
 export default {
   data: () => ({
@@ -46,8 +45,11 @@ export default {
     designMode: true
   }),
   computed: {
-    schema: () => {
+    schema() {
       return schema
+    },
+    formatSchema() {
+      return formatJSON(this.schema)
     }
   },
   props: {

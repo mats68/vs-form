@@ -26,7 +26,6 @@ import draggable from 'vuedraggable'
 // import { components } from 'src/utils/constants'
 
 // Containers
-import VsForm from 'src/components/containers/vs-form'
 import VsCard from 'src/components/containers/vs-card'
 import VsPanel from 'src/components/containers/vs-panel'
 import VsSubschema from 'src/components/containers/vs-subschema'
@@ -42,7 +41,6 @@ export default {
     return {
       internalSchema: this.schema,
       views: {
-        form: VsForm,
         card: VsCard,
         panel: VsPanel,
         subschema: VsSubschema,
@@ -55,7 +53,7 @@ export default {
   props: {
     node: {
       type: String,
-      default: 'root'
+      required: true
     },
     schema: {
       type: Object,
@@ -65,10 +63,6 @@ export default {
       type: Boolean,
       default: false
     },
-    root: {
-      type: Boolean,
-      default: true
-    }
   },
   computed: {
     itemList: {
@@ -104,7 +98,7 @@ export default {
     },
     dragOptions() {
       return {
-        group: 'normal',
+        group: this.internalSchema.id,
         disabled: !this.designMode
       }
     },
@@ -115,10 +109,9 @@ export default {
     },
     currentProperties(name) {
       return {
-        schema: this.schema,
+        schema: this.internalSchema,
         node: name,
         designMode: this.designMode,
-        root: false
       }
     },
     colWidth(field) {
@@ -128,7 +121,6 @@ export default {
 
   components: {
     draggable,
-    VsForm,
     VsCard,
     VsPanel,
     VsSubschema,

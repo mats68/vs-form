@@ -1,24 +1,5 @@
 import { components } from 'src/utils/constants'
-
-const subschema = {
-  values: {
-    email: 'Thaler'
-  },
-  components: {
-    root: {
-      label: 'Subschema',
-      type: components.panel,
-      children: ['email']
-    },
-    email: {
-      field: 'email',
-      type: components.text,
-      label: 'Email',
-      placeholder: 'Email eingeben...',
-      xl: 6
-    },
-  }
-}
+import { subschema } from './subschema'
 
 export const schema = {
   values: {
@@ -27,7 +8,8 @@ export const schema = {
     plz: '',
     ort: '',
     name1: '',
-    vorname1: ''
+    vorname1: '',
+    sub: subschema.values
   },
   components: {
     root: {
@@ -84,7 +66,7 @@ export const schema = {
     panel2: {
       label: 'Panel1',
       type: components.card,
-      children: ['name1', 'vorname1', 'strasse1'],
+      children: ['name1', 'strasse1'],
       xl: 6
     },
     name1: {
@@ -113,7 +95,7 @@ export const schema = {
       type: components.subschema,
       schema: subschema,
       label: 'Subschema',
-      xl: 6
+      xl: 12
     }
   }
 }

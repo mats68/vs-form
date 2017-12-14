@@ -8,10 +8,14 @@ export default {
     },
     editValue: {
       get() {
-        return this.schema.values[this.node]
+        if (this.item) {
+          return this.schema.values[this.item.field]
+        }
       },
       set(newValue) {
-        Vue.set(this.schema.values, this.node, newValue)
+        if (this.item) {
+          Vue.set(this.schema.values, this.item.field, newValue)
+        }
       }
     },
     label() {

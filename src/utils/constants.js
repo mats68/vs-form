@@ -1,6 +1,5 @@
 export const components = {
   // containers
-  form: 'form',
   card: 'card',
   panel: 'panel',
   tabs: 'tabs',

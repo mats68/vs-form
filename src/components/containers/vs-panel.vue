@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <v-card class="elevation-0">
+    <v-card-title>{{item.label}}</v-card-title>
     <slot></slot>
-  </div>
+  </v-card>
 </template>
 
 <script>
@@ -12,6 +13,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 
 </style>
