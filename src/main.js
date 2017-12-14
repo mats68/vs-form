@@ -7,10 +7,8 @@ import 'vuetify/dist/vuetify.css'
 
 import vsForm from 'src/components/vs-form'
 import vsItem from 'src/components/vs-item'
-import Plugintest from 'plugintest'
 
 Vue.use(Vuetify)
-Vue.use(Plugintest)
 
 Vue.config.productionTip = false
 
