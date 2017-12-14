@@ -23,10 +23,13 @@
 import Vue from 'vue'
 import draggable from 'vuedraggable'
 
+// import { components } from 'src/utils/constants'
+
 // Containers
 import VsForm from 'src/components/containers/vs-form'
 import VsCard from 'src/components/containers/vs-card'
 import VsPanel from 'src/components/containers/vs-panel'
+import VsSubschema from 'src/components/containers/vs-subschema'
 
 // Fields
 import VsTextField from 'src/components/fields/vs-text-field'
@@ -42,6 +45,7 @@ export default {
         form: VsForm,
         card: VsCard,
         panel: VsPanel,
+        subschema: VsSubschema,
         text: VsTextField,
         checkbox: VsCheckbox,
         slider: VsSlider,
@@ -127,6 +131,7 @@ export default {
     VsForm,
     VsCard,
     VsPanel,
+    VsSubschema,
     VsTextField,
     VsSlider,
     VsCheckbox

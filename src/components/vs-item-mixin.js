@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 export default {
-  props: ['schema', 'node'],
+  props: ['schema', 'node', 'designMode'],
   computed: {
     item() {
       return this.schema.components[this.node]
