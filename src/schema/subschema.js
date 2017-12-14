@@ -8,6 +8,7 @@ const subSubschema = {
   components: {
     root: {
       label: 'Sub-Subschema',
+      color: 'red lighten-3',
       type: components.panel,
       children: ['email1', 'telefon1']
     },
@@ -35,6 +36,7 @@ export const subschema = {
   components: {
     root: {
       label: 'Subschema',
+      color: 'brown lighten-3',
       type: components.panel,
       children: ['email', 'telefon', 'subSub']
     },
@@ -57,6 +59,34 @@ export const subschema = {
       schema: subSubschema,
       label: 'SubSUBschema',
       xl: 6
+    }
+  }
+}
+
+export const subschema2 = {
+  values: {
+    geburtsort: '',
+    geburtsdatum: ''
+  },
+  components: {
+    root: {
+      label: '2. Subschema',
+      color: 'green lighten-3',
+      type: components.panel,
+      children: ['geburtsort', 'geburtsdatum']
+    },
+    geburtsort: {
+      field: 'geburtsort',
+      type: components.text,
+      label: 'geburtsort',
+      placeholder: 'geburtsort eingeben...',
+      xl: 3
+    },
+    geburtsdatum: {
+      field: 'geburtsdatum',
+      type: components.text,
+      label: 'geburtsdatum',
+      xl: 3
     }
   }
 }

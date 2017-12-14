@@ -1,5 +1,5 @@
 import { components } from 'src/utils/constants'
-import { subschema } from './subschema'
+import { subschema, subschema2 } from './subschema'
 
 export const schema = {
   values: {
@@ -9,17 +9,19 @@ export const schema = {
     ort: '',
     name1: '',
     vorname1: '',
-    sub: subschema.values
+    sub: subschema.values,
+    sub2: subschema2.values
   },
   components: {
     root: {
       label: 'Kunden',
       type: components.panel,
-      children: ['panel1', 'panel2', 'sub']
+      children: ['panel1', 'panel2', 'sub', 'sub2']
     },
     panel1: {
       label: 'Panel1',
       type: components.card,
+      color: 'grey lighten-2',
       children: ['name', 'vorname', 'plz', 'ort', 'breite', 'superuser'],
       xl: 6
     },
@@ -96,6 +98,14 @@ export const schema = {
       schema: subschema,
       label: 'Subschema',
       xl: 12
-    }
+    },
+    sub2: {
+      field: 'sub2',
+      type: components.subschema,
+      schema: subschema2,
+      label: 'Subschema2',
+      xl: 12
+    },
+
   }
 }

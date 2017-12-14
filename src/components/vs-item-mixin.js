@@ -21,6 +21,9 @@ export default {
     label() {
       return this.item ? this.item.label : ''
     },
+    color() {
+      return this.item && this.item.color ? this.item.color : ''
+    },
     id() {
       return this.item ? this.item.id : ''
     }

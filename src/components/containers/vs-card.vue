@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card :color="color">
     <v-card-title>{{item.label}}</v-card-title>
     <slot></slot>
   </v-card>
