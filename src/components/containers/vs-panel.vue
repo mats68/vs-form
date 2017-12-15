@@ -1,5 +1,5 @@
 <template>
-  <v-card class="elevation-0" :color="color">
+  <v-card class="elevation-0" :color="color" :style="style">
     <v-card-title>{{item.label}}</v-card-title>
     <slot></slot>
   </v-card>

@@ -26,6 +26,9 @@ export default {
     },
     id() {
       return this.item ? this.item.id : ''
+    },
+    style() {
+      return this.item ? this.item.style : ''
     }
   }
 }

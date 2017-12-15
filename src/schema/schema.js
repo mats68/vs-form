@@ -12,6 +12,7 @@ export const schema = {
     sub: subschema.values,
     sub2: subschema2.values
   },
+  style: { fontSize: '18px' },
   components: {
     root: {
       label: 'Kunden',
@@ -21,6 +22,7 @@ export const schema = {
     panel1: {
       label: 'Panel1',
       type: components.card,
+      style: { fontSize: '10px' },
       color: 'grey lighten-2',
       children: ['name', 'vorname', 'plz', 'ort', 'breite', 'superuser'],
       xl: 6
@@ -105,7 +107,6 @@ export const schema = {
       schema: subschema2,
       label: 'Subschema2',
       xl: 12
-    },
-
+    }
   }
 }
