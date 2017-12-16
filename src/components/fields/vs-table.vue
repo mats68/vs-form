@@ -1,23 +1,21 @@
 <template>
   <v-card>
     <v-card-title>
-      <v-menu bottom offset-y lazy>
-        <v-btn flat icon color="indigo" slot="activator" @click="add">
-          <v-icon>add_box</v-icon>
-        </v-btn>
-        <!-- <vs-item :schema="schema" :designMode="designMode" node="plz"></vs-item> -->
-      </v-menu>
+      <v-btn flat icon color="indigo" slot="activator" @click="add">
+        <v-icon>add_box</v-icon>
+      </v-btn>
 
       <v-spacer></v-spacer>
-      <v-text-field append-icon="search" label="Search" single-line hide-details v-model="search"></v-text-field>
+      <v-text-field append-icon="search" label="Search" single-line hide-details v-model="search" ref="search"></v-text-field>
     </v-card-title>
     <v-data-table :headers="headers" :items="items" :search="search" hide-actions class="elevation-1">
       <template slot="items" slot-scope="props">
-        <!-- <td v-for="item in props.item" :key="item">{{ item }}</td> -->
-        <td v-for="item in props.item" :key="item"><v-text-field :slot="input" :value="item"></v-text-field></td>
+        <td>
+          <v-text-field :value="getValue(props.item)" :ref="refNewItem(props.item)"></v-text-field>
+        </td>
       </template>
-
     </v-data-table>
+    {{items}}
   </v-card>
 
 </template>
@@ -36,20 +34,36 @@ export default {
   },
   methods: {
     add() {
-      this.items.push({ [this.item.field]: '' })
+      this.items.push({ [this.compo.field]: 'Neu', newItem: true })
+      this.$nextTick(() => {
+        this.$refs.newRef.focus()
+        this.items = this.items.map(val => {
+          return { [this.compo.field]: val[this.compo.field] }
+        })
+      })
       // todo  update value this.editValue.push('')
+    },
+    refNewItem(item) {
+      return item.newItem ? 'newRef' : ''
+    },
+    getValue(item) {
+      return item[this.compo.field]
     }
   },
   created() {
-    this.headers = [{ text: this.label, value: this.item.field, align: 'left' }]
+    this.headers = [
+      { text: this.label, value: this.compo.field, align: 'left' }
+    ]
     this.items = this.editValue.map(val => {
-      return { [this.item.field]: val }
+      return { [this.compo.field]: val }
     })
     // console.log(this.schema)
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+.maxheight {
+  max-height: 300px;
+}
 </style>
