@@ -41,7 +41,6 @@ export default {
   name: 'vs-item',
   data: function() {
     return {
-      internalSchema: this.schema,
       views: {
         card: VsCard,
         panel: VsPanel,
@@ -73,7 +72,7 @@ export default {
         let resArray = []
         if (this.item && !this.item.hidden) {
           this.item.children.forEach(item => {
-            let c = this.internalSchema.components[item]
+            let c = this.schema.components[item]
             if (c && !c.hidden) {
               c.id = item
               resArray.push(c)
@@ -86,7 +85,7 @@ export default {
         if (this.designMode && this.item) {
           const children = value.map(item => item.id)
           Vue.set(
-            this.internalSchema.components[this.node],
+            this.schema.components[this.node],
             'children',
             children
           )
@@ -94,14 +93,14 @@ export default {
       }
     },
     item() {
-      return this.internalSchema.components[this.node]
+      return this.schema.components[this.node]
     },
     isContainer() {
       return this.item && this.item.hasOwnProperty('children')
     },
     dragOptions() {
       return {
-        group: this.internalSchema.id,
+        group: this.schema.id,
         disabled: !this.designMode
       }
     }
@@ -110,7 +109,7 @@ export default {
     currentView(name) {
       if (
         isArray(this.item.type) ||
-        isArray(this.internalSchema.values[this.item.field])
+        isArray(this.schema.values[this.item.field])
       ) {
         return VsTable
       } else {
@@ -119,7 +118,7 @@ export default {
     },
     currentProperties(name) {
       return {
-        schema: this.internalSchema,
+        schema: this.schema,
         node: name,
         designMode: this.designMode
       }
