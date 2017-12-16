@@ -2,8 +2,8 @@
   <component v-if="designMode" :is="currentView(node)" v-bind="currentProperties(node)">
     <v-container v-if="isContainer" fluid grid-list-md>
       <draggable class="layout row wrap dragArea" v-model="itemList" :options="dragOptions">
-        <v-flex v-for="field in itemList" :class="colWidth(field)" :key="field.id">
-          <vs-item v-bind="currentProperties(field.id)"></vs-item>
+        <v-flex v-for="component in itemList" :class="colWidth(component)" :key="component.id">
+          <vs-item v-bind="currentProperties(component.id)"></vs-item>
         </v-flex>
       </draggable>
     </v-container>
@@ -11,8 +11,8 @@
   <component v-else :is="currentView(node)" v-bind="currentProperties(node)">
     <v-container v-if="isContainer" fluid grid-list-md>
       <v-layout row wrap>
-        <v-flex v-for="field in itemList" :class="colWidth(field)" :key="field.id">
-          <vs-item v-bind="currentProperties(field.id)"></vs-item>
+        <v-flex v-for="component in itemList" :class="colWidth(component)" :key="component.id">
+          <vs-item v-bind="currentProperties(component.id)"></vs-item>
         </v-flex>
       </v-layout>
     </v-container>
@@ -24,7 +24,7 @@ import Vue from 'vue'
 import draggable from 'vuedraggable'
 import { isArray } from 'lodash'
 
-// import { components } from 'src/utils/constants'
+import { components } from 'src/utils/constants'
 
 // Containers
 import VsCard from 'src/components/containers/vs-card'
@@ -32,7 +32,7 @@ import VsPanel from 'src/components/containers/vs-panel'
 import VsSubschema from 'src/components/containers/vs-subschema'
 
 // Fields
-import VsTable from 'src/components/fields/vs-table'
+import VsTableSingleEditor from 'src/components/fields/vs-table-single-editor'
 import VsTextField from 'src/components/fields/vs-text-field'
 import VsSlider from 'src/components/fields/vs-slider'
 import VsCheckbox from 'src/components/fields/vs-checkbox'
@@ -46,7 +46,6 @@ export default {
         card: VsCard,
         panel: VsPanel,
         subschema: VsSubschema,
-        table: VsTable,
         text: VsTextField,
         checkbox: VsCheckbox,
         slider: VsSlider
@@ -67,7 +66,10 @@ export default {
       default: false
     },
     options: {
-      type: Object
+      type: Object,
+      default: () => {
+        return {}
+      }
     }
   },
   computed: {
@@ -112,10 +114,10 @@ export default {
   methods: {
     currentView(name) {
       if (
-        isArray(this.compo.type) ||
-        isArray(this.internalSchema.values[this.compo.field])
+        isArray(this.internalSchema.values[this.compo.field]) &&
+        this.compo.type === components.text // array NUR Text-Felder erlaubt
       ) {
-        return VsTable
+        return VsTableSingleEditor
       } else {
         return this.views[this.compo.type]
       }
@@ -128,8 +130,8 @@ export default {
         options: this.options
       }
     },
-    colWidth(field) {
-      return field && field.xl ? 'xl' + field.xl : 'xl2'
+    colWidth(component) {
+      return component && component.xl ? 'xl' + component.xl : 'xl2'
     }
   },
 
@@ -138,7 +140,7 @@ export default {
     VsCard,
     VsPanel,
     VsSubschema,
-    VsTable,
+    VsTableSingleEditor,
     VsTextField,
     VsSlider,
     VsCheckbox

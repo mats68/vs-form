@@ -50,7 +50,7 @@ export const schema = {
     },
     ort: {
       field: 'ort',
-      type: [components.text],
+      type: components.text,
       label: 'ort-array',
       placeholder: 'ort eingeben...',
       xl: 6
