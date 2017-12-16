@@ -1,5 +1,5 @@
 <template>
-  <vs-item :schema="item.schema" :designMode="designMode" node="root"></vs-item>
+  <vs-item :schema="compo.schema" :designMode="designMode" node="root"></vs-item>
 </template>
 
 <script>

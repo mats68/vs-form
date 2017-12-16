@@ -1,34 +1,34 @@
 import Vue from 'vue'
 
 export default {
-  props: ['schema', 'node', 'designMode'],
+  props: ['schema', 'node', 'designMode', 'options'],
   computed: {
-    item() {
+    compo() {
       return this.schema.components[this.node]
     },
     editValue: {
       get() {
-        if (this.item) {
-          return this.schema.values[this.item.field]
+        if (this.compo) {
+          return this.schema.values[this.compo.field]
         }
       },
       set(newValue) {
-        if (this.item) {
-          Vue.set(this.schema.values, this.item.field, newValue)
+        if (this.compo) {
+          Vue.set(this.schema.values, this.compo.field, newValue)
         }
       }
     },
     label() {
-      return this.item ? this.item.label : ''
+      return this.compo ? this.compo.label : ''
     },
     color() {
-      return this.item && this.item.color ? this.item.color : ''
+      return this.compo && this.compo.color ? this.compo.color : ''
     },
     id() {
-      return this.item ? this.item.id : ''
+      return this.compo ? this.compo.id : ''
     },
     style() {
-      return this.item ? this.item.style : ''
+      return this.compo ? this.compo.style : ''
     }
   }
 }

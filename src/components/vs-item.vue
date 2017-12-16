@@ -41,6 +41,7 @@ export default {
   name: 'vs-item',
   data: function() {
     return {
+      internalSchema: this.schema, // nötig sonst geht drag drop nicht
       views: {
         card: VsCard,
         panel: VsPanel,
@@ -64,17 +65,23 @@ export default {
     designMode: {
       type: Boolean,
       default: false
+    },
+    options: {
+      type: Object
     }
   },
   computed: {
+    compo() {
+      return this.internalSchema.components[this.node]
+    },
     itemList: {
       get() {
         let resArray = []
-        if (this.item && !this.item.hidden) {
-          this.item.children.forEach(item => {
-            let c = this.schema.components[item]
+        if (this.compo && !this.compo.hidden) {
+          this.compo.children.forEach(compo => {
+            let c = this.internalSchema.components[compo]
             if (c && !c.hidden) {
-              c.id = item
+              c.id = compo
               resArray.push(c)
             }
           })
@@ -82,25 +89,22 @@ export default {
         return resArray
       },
       set(value) {
-        if (this.designMode && this.item) {
-          const children = value.map(item => item.id)
+        if (this.designMode && this.compo) {
+          const children = value.map(compo => compo.id)
           Vue.set(
-            this.schema.components[this.node],
+            this.internalSchema.components[this.node],
             'children',
             children
           )
         }
       }
     },
-    item() {
-      return this.schema.components[this.node]
-    },
     isContainer() {
-      return this.item && this.item.hasOwnProperty('children')
+      return this.compo && this.compo.hasOwnProperty('children')
     },
     dragOptions() {
       return {
-        group: this.schema.id,
+        group: this.internalSchema.id,
         disabled: !this.designMode
       }
     }
@@ -108,19 +112,20 @@ export default {
   methods: {
     currentView(name) {
       if (
-        isArray(this.item.type) ||
-        isArray(this.schema.values[this.item.field])
+        isArray(this.compo.type) ||
+        isArray(this.internalSchema.values[this.compo.field])
       ) {
         return VsTable
       } else {
-        return this.views[this.item.type]
+        return this.views[this.compo.type]
       }
     },
     currentProperties(name) {
       return {
-        schema: this.schema,
+        schema: this.internalSchema,
         node: name,
-        designMode: this.designMode
+        designMode: this.designMode,
+        options: this.options
       }
     },
     colWidth(field) {
