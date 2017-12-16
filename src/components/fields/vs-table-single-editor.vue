@@ -1,38 +1,34 @@
 <template>
-  <v-card>
-    <v-card-title>
-      <!-- <v-badge>
-        <v-tooltip bottom slot="badge">
-          <v-icon  slot="activator" @click="add">lock</v-icon>
-          <span>Add item</span>
+  <div id="main" tabindex="1" @focusin="onFocus" @focusout="onBlur">
+    <v-card>
+      <v-card-title v-show="showHeader" class="header">
+        <v-tooltip v-model="show1" bottom>
+          <v-btn icon flat color="primary" slot="activator" @click="add">
+            <v-icon>add_box</v-icon>
+          </v-btn>
+          <span>{{getStr("strAddItem")}}</span>
         </v-tooltip>
-      </v-badge> -->
-      <v-tooltip v-model="show1" bottom>
-        <v-btn icon flat color="primary" slot="activator" @click="add">
-          <v-icon>add_box</v-icon>
-        </v-btn>
-        <span>{{getStr("strAddItem")}}</span>
-      </v-tooltip>
-      <v-tooltip v-model="show2" bottom>
-        <v-btn icon flat color="error" slot="activator" @click="remove" :disabled="selected.length < 1">
-          <v-icon>remove_circle</v-icon>
-        </v-btn>
-        <span>{{getStr("strRemoveItems")}}</span>
-      </v-tooltip>
-      <v-spacer></v-spacer>
-      <v-text-field append-icon="search" :label="getStr('strSearch')" single-line hide-details v-model="search" ref="search"></v-text-field>
-    </v-card-title>
-    <v-data-table :headers="headers" :items="items" v-model="selected" :search="search" item-key="ort" select-all hide-actions class="elevation-1">
-      <template slot="items" slot-scope="props">
-        <td>
-          <v-checkbox primary hide-details v-model="props.selected"></v-checkbox>
-        </td>
-        <td>
-          <v-text-field :value="getValue(props.item)" @change="change" :ref="refNewItem(props.item)"></v-text-field>
-        </td>
-      </template>
-    </v-data-table>
-  </v-card>
+        <v-tooltip v-model="show2" bottom>
+          <v-btn icon flat color="error" slot="activator" @click="remove" :disabled="selected.length < 1">
+            <v-icon>remove_circle</v-icon>
+          </v-btn>
+          <span>{{getStr("strRemoveItems")}}</span>
+        </v-tooltip>
+        <v-spacer></v-spacer>
+        <v-text-field append-icon="search" :label="getStr('strSearch')" single-line hide-details v-model="search" ref="search"></v-text-field>
+      </v-card-title>
+      <v-data-table :headers="headers" :items="items" v-model="selected" :search="search" item-key="ort" :select-all="showHeader" hide-actions class="elevation-1">
+        <template slot="items" slot-scope="props">
+          <td v-show="showHeader" class="checkbox">
+            <v-checkbox primary hide-details v-model="props.selected"></v-checkbox>
+          </td>
+          <td>
+            <v-text-field :value="getValue(props.item)" @change="change" :ref="refNewItem(props.item)"></v-text-field>
+          </td>
+        </template>
+      </v-data-table>
+    </v-card>
+  </div>
 
 </template>
 
@@ -51,6 +47,8 @@ export default {
       search: '',
       show1: false,
       show2: false,
+      showHeader: false,
+      lostFocus: false
     }
   },
   methods: {
@@ -67,6 +65,21 @@ export default {
     },
     change(newValue) {
       console.log(newValue)
+    },
+    onFocus(ev) {
+      this.lostFocus = false
+      this.showHeader = true
+      // console.log('focus', ev.target.id)
+    },
+    onBlur(ev) {
+      this.lostFocus = true
+      setTimeout(() => {
+        if (this.lostFocus) {
+          this.showHeader = false
+        }
+      }, 200)
+
+      // console.log('blur', ev.target.id)
     },
     remove() {
       this.items = this.items.filter(el => {
@@ -102,7 +115,11 @@ export default {
 </script>
 
 <style scoped>
-.maxheight {
-  max-height: 300px;
+.header {
+  padding : 0;
+}
+
+.checkbox {
+    width: 10px;
 }
 </style>
