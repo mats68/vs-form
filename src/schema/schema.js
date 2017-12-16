@@ -6,7 +6,7 @@ export const schema = {
     name: 'Thaler',
     vorname: '',
     plz: '',
-    ort: '',
+    ort: ['goss', 'bern'],
     name1: '',
     vorname1: '',
     sub: subschema.values,
@@ -46,12 +46,12 @@ export const schema = {
       type: components.text,
       label: 'plz',
       placeholder: 'plz eingeben...',
-      xl: 6
+      xl: 2
     },
     ort: {
       field: 'ort',
-      type: components.text,
-      label: 'ort',
+      type: [components.text],
+      label: 'ort-array',
       placeholder: 'ort eingeben...',
       xl: 6
     },

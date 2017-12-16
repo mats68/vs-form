@@ -22,6 +22,7 @@
 <script>
 import Vue from 'vue'
 import draggable from 'vuedraggable'
+import { isArray } from 'lodash'
 
 // import { components } from 'src/utils/constants'
 
@@ -31,6 +32,7 @@ import VsPanel from 'src/components/containers/vs-panel'
 import VsSubschema from 'src/components/containers/vs-subschema'
 
 // Fields
+import VsTable from 'src/components/fields/vs-table'
 import VsTextField from 'src/components/fields/vs-text-field'
 import VsSlider from 'src/components/fields/vs-slider'
 import VsCheckbox from 'src/components/fields/vs-checkbox'
@@ -44,9 +46,10 @@ export default {
         card: VsCard,
         panel: VsPanel,
         subschema: VsSubschema,
+        table: VsTable,
         text: VsTextField,
         checkbox: VsCheckbox,
-        slider: VsSlider,
+        slider: VsSlider
       }
     }
   },
@@ -62,7 +65,7 @@ export default {
     designMode: {
       type: Boolean,
       default: false
-    },
+    }
   },
   computed: {
     itemList: {
@@ -101,17 +104,24 @@ export default {
         group: this.internalSchema.id,
         disabled: !this.designMode
       }
-    },
+    }
   },
   methods: {
     currentView(name) {
-      return this.views[this.internalSchema.components[name].type]
+      if (
+        isArray(this.item.type) ||
+        isArray(this.internalSchema.values[this.item.field])
+      ) {
+        return VsTable
+      } else {
+        return this.views[this.item.type]
+      }
     },
     currentProperties(name) {
       return {
         schema: this.internalSchema,
         node: name,
-        designMode: this.designMode,
+        designMode: this.designMode
       }
     },
     colWidth(field) {
@@ -124,6 +134,7 @@ export default {
     VsCard,
     VsPanel,
     VsSubschema,
+    VsTable,
     VsTextField,
     VsSlider,
     VsCheckbox
@@ -135,9 +146,7 @@ export default {
 </script>
 
 <style scoped>
-
 .dragArea {
   min-height: 50px;
 }
-
 </style>

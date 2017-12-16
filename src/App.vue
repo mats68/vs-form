@@ -31,6 +31,7 @@
     </v-toolbar>
     <v-content>
       <vs-form :schema="schema" :designMode="designMode"></vs-form>
+      {{schema.values}}
     </v-content>
   </v-app>
 </template>
