@@ -66,6 +66,11 @@ export default {
     change(newValue) {
       console.log(newValue)
     },
+    remove() {
+      this.items = this.items.filter(el => {
+        return this.selected.indexOf(el) < 0
+      })
+    },
     onFocus(ev) {
       this.lostFocus = false
       this.showHeader = true
@@ -80,11 +85,6 @@ export default {
       }, 200)
 
       // console.log('blur', ev.target.id)
-    },
-    remove() {
-      this.items = this.items.filter(el => {
-        return this.selected.indexOf(el) < 0
-      })
     },
     refNewItem(item) {
       return item.newItem ? 'newRef' : ''
