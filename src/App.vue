@@ -33,8 +33,7 @@
       <v-text-field v-model="test"></v-text-field>
       <v-btn @click="eval1">Eval</v-btn>
       {{test1}}
-      <br>
-      {{test2}}
+      <br> {{test2}}
       <vs-form :schema="schema" :designMode="designMode"></vs-form>
       {{schema.values}}
     </v-content>
@@ -44,7 +43,7 @@
 <script>
 import { schema } from 'src/schema/schema'
 import { formatJSON } from 'src/utils/utils'
-// import expr from 'src/utils/expr-eval'
+import expr from 'expression-parser'
 // import math from 'mathjs'
 
 // const util = {
@@ -57,8 +56,8 @@ export default {
   data: () => ({
     drawer: null,
     designMode: true,
-    test: 'schema.ort.join()',
-    test1: 'dada',
+    test: 'Hallo {ld.capitalize(v.vorname)} ({label("name")}: [name]) heute ist der {date.format(curDate,"dd.mm.YYYY")}',
+    test1: '',
     test2: ''
   }),
   computed: {
@@ -71,13 +70,16 @@ export default {
   },
   methods: {
     eval1() {
-      // this.test1 = expr.run(this.test, {schema: schema.values, util: util})
-      // try {
-      // console.log(expr.parse(this.test))
-      // } catch (error) {
-      //   console.log(console.error());
+      this.test1 = expr.compile(this.test, schema)
+      this.test2 = expr.errors
 
+      // return
+      // try {
+      //   console.log(expr.parse(this.test))
+      // } catch (error) {
+      //   console.log(error)
       // }
+      // this.test1 = expr.run(this.test, schema)
 
       // const fn = expr.compile(this.test)
       // console.log(fn())

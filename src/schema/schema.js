@@ -4,7 +4,7 @@ import { subschema, subschema2 } from './subschema'
 export const schema = {
   values: {
     name: 'Thaler',
-    vorname: '',
+    vorname: 'mats',
     plz: '',
     ort: ['goss', 'bern'],
     name1: '',
