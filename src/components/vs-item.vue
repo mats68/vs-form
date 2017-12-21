@@ -24,7 +24,7 @@ import Vue from 'vue'
 import draggable from 'vuedraggable'
 import { isArray } from 'lodash'
 
-import { components } from 'vs-schema'
+import { components, getChildrenComponents } from 'vs-schema'
 
 // Containers
 import VsCard from 'src/components/containers/vs-card'
@@ -78,17 +78,18 @@ export default {
     },
     itemList: {
       get() {
-        let resArray = []
-        if (this.compo && !this.compo.hidden) {
-          this.compo.children.forEach(compo => {
-            let c = this.internalSchema.components[compo]
-            if (c && !c.hidden) {
-              c.id = compo
-              resArray.push(c)
-            }
-          })
-        }
-        return resArray
+        return getChildrenComponents(this.internalSchema, this.node)
+        // let resArray = []
+        // if (this.compo && !this.compo.hidden) {
+        //   this.compo.children.forEach(compo => {
+        //     let c = this.internalSchema.components[compo]
+        //     if (c && !c.hidden) {
+        //       c.id = compo
+        //       resArray.push(c)
+        //     }
+        //   })
+        // }
+        // return resArray
       },
       set(value) {
         if (this.designMode && this.compo) {

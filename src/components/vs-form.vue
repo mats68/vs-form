@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {updateSchemaId} from 'vs-schema'
+import {updateSchemaIds} from 'vs-schema'
 
 export default {
   props: {
@@ -23,7 +23,7 @@ export default {
     }
   },
   created() {
-    updateSchemaId(this.schema, 'main')
+    updateSchemaIds(this.schema)
     // console.log(formatJSON(this.schema))
   }
 }
