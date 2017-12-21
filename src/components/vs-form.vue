@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {updateSchemaId} from 'src/utils/utils'
+import {updateSchemaId} from 'vs-schema'
 
 export default {
   props: {

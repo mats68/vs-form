@@ -24,7 +24,7 @@ import Vue from 'vue'
 import draggable from 'vuedraggable'
 import { isArray } from 'lodash'
 
-import { components } from 'src/utils/constants'
+import { components } from 'vs-schema'
 
 // Containers
 import VsCard from 'src/components/containers/vs-card'
@@ -146,7 +146,7 @@ export default {
     VsCheckbox
   },
   mounted() {
-    // console.log(this.values.name)
+    // console.log('components', components)
   }
 }
 </script>
