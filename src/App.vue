@@ -41,9 +41,8 @@
 </template>
 
 <script>
-import { schema } from 'src/schema/schema'
-import { formatJSON } from 'src/utils/utils'
-import expr from 'expression-parser'
+import { schema, formatJSON } from 'vs-schema'
+import Expr from 'expression-parser'
 // import math from 'mathjs'
 
 // const util = {
@@ -56,7 +55,7 @@ export default {
   data: () => ({
     drawer: null,
     designMode: true,
-    test: 'Hallo {ld.capitalize(v.vorname)} ({label("name")}: [name]) heute ist der {date.format(curDate,"dd.mm.YYYY")}',
+    test: 'Hallo ${ld.capitalize(v.vorname)} (${label("name")}: [name]) heute ist der ${date.format(curDate,"DD.MM.YYYY")}, Zeit ${date.format(curDate,"hh.mm.ss")}', // eslint-disable-line
     test1: '',
     test2: ''
   }),
@@ -70,7 +69,8 @@ export default {
   },
   methods: {
     eval1() {
-      this.test1 = expr.compile(this.test, schema)
+      let expr = new Expr(schema)
+      this.test1 = expr.run(this.test)
       this.test2 = expr.errors
 
       // return
