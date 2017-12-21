@@ -34,15 +34,16 @@
       <v-btn @click="eval1">Eval</v-btn>
       {{test1}}
       <br> {{test2}}
-      <vs-form :schema="schema" :designMode="designMode"></vs-form>
-      {{schema.values}}
+      <!-- <vs-item :schema="miniSchema" node="root" :designMode="designMode"></vs-item> -->
+      <vs-form :schema="miniSchema" :designMode="designMode"></vs-form>
+      {{miniSchema.values}}
     </v-content>
   </v-app>
 </template>
 
 <script>
-import { schema, formatJSON } from 'vs-schema'
-import Expr from 'expression-parser'
+import { miniSchema, formatJSON } from 'vs-schema'
+// import Expr from 'expression-parser'
 // import math from 'mathjs'
 
 // const util = {
@@ -60,8 +61,8 @@ export default {
     test2: ''
   }),
   computed: {
-    schema() {
-      return schema
+    miniSchema() {
+      return miniSchema
     },
     formatSchema() {
       return formatJSON(this.schema)
@@ -69,9 +70,9 @@ export default {
   },
   methods: {
     eval1() {
-      let expr = new Expr(schema)
-      this.test1 = expr.run(this.test)
-      this.test2 = expr.errors
+      // let expr = new Expr(schema)
+      // this.test1 = expr.run(this.test)
+      // this.test2 = expr.errors
 
       // return
       // try {

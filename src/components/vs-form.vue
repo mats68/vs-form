@@ -24,6 +24,8 @@ export default {
   },
   created() {
     updateSchemaIds(this.schema)
+    // console.log('created vs-form')
+
     // console.log(formatJSON(this.schema))
   }
 }

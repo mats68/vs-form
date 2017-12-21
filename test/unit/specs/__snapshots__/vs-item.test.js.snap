@@ -1,17 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`VsItem miniSchema has the expected html structure 1`] = `
+exports[`VsItem miniSchema deep render 1`] = `
 <div
-  class="elevation-0 card"
-  data-ripple="false"
-  style="height: auto;"
+  class="input-group input-group--dirty input-group--text-field primary--text"
 >
-  <div
-    class="card__title"
+  <label
+    for="name"
   >
-    Kunden
+    Name
+  </label>
+  <div
+    class="input-group__input"
+  >
+    <input
+      id="name"
+      tabindex="0"
+      type="text"
+    />
   </div>
-   
-  <!---->
+  <div
+    class="input-group__details"
+  >
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`VsItem miniSchema shallow render 1`] = `
+<div
+  class="input-group input-group--dirty input-group--text-field primary--text"
+>
+  <label
+    for="name"
+  >
+    Name
+  </label>
+  <div
+    class="input-group__input"
+  >
+    <input
+      id="name"
+      tabindex="0"
+      type="text"
+    />
+  </div>
+  <div
+    class="input-group__details"
+  >
+    <!---->
+  </div>
 </div>
 `;

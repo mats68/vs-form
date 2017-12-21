@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { shallow } from 'vue-test-utils'
+import { shallow, mount } from 'vue-test-utils'
 
 import VsForm from 'src/components/vs-form'
 import VsItem from 'src/components/vs-item'
@@ -14,18 +14,33 @@ Vue.component('vs-form', VsForm)
 Vue.component('vs-item', VsItem)
 
 describe('VsItem miniSchema', () => {
-  let Cmp
+  let Cmp, Cmp2
 
   beforeEach(() => {
     Cmp = shallow(VsItem, {
       propsData: {
         schema: miniSchema,
-        node: 'root'
+        node: 'name'
+      }
+    })
+
+    Cmp2 = mount(VsItem, {
+      propsData: {
+        schema: miniSchema,
+        node: 'name'
       }
     })
   })
 
-  it('has the expected html structure', () => {
+  it('shallow render', () => {
     expect(Cmp.element).toMatchSnapshot()
+  })
+
+  it('deep render', () => {
+    expect(Cmp2.element).toMatchSnapshot()
+  })
+
+  it('is a vsitem component', () => {
+    expect(Cmp2.is(VsItem)).toBe(true)
   })
 })

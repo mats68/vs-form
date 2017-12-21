@@ -3,7 +3,7 @@
     <v-container v-if="isContainer" fluid grid-list-md>
       <draggable class="layout row wrap dragArea" v-model="itemList" :options="dragOptions">
         <v-flex v-for="component in itemList" :class="colWidth(component)" :key="component.id">
-          <vs-item v-bind="currentProperties(component.id)"></vs-item>
+          <vs-item v-bind="currentProperties(component.node)"></vs-item>
         </v-flex>
       </draggable>
     </v-container>
@@ -12,7 +12,7 @@
     <v-container v-if="isContainer" fluid grid-list-md>
       <v-layout row wrap>
         <v-flex v-for="component in itemList" :class="colWidth(component)" :key="component.id">
-          <vs-item v-bind="currentProperties(component.id)"></vs-item>
+          <vs-item v-bind="currentProperties(component.node)"></vs-item>
         </v-flex>
       </v-layout>
     </v-container>
@@ -22,7 +22,7 @@
 <script>
 import Vue from 'vue'
 import draggable from 'vuedraggable'
-import { isArray } from 'lodash'
+import { isArray, has } from 'lodash'
 
 import { components, getChildrenComponents } from 'vs-schema'
 
@@ -79,17 +79,6 @@ export default {
     itemList: {
       get() {
         return getChildrenComponents(this.internalSchema, this.node)
-        // let resArray = []
-        // if (this.compo && !this.compo.hidden) {
-        //   this.compo.children.forEach(compo => {
-        //     let c = this.internalSchema.components[compo]
-        //     if (c && !c.hidden) {
-        //       c.id = compo
-        //       resArray.push(c)
-        //     }
-        //   })
-        // }
-        // return resArray
       },
       set(value) {
         if (this.designMode && this.compo) {
@@ -137,7 +126,14 @@ export default {
       return component && component.xl ? 'xl' + component.xl : 'xl2'
     }
   },
-
+  created() {
+    if (!has(this.compo, 'id')) {
+      this.compo.id = this.node
+    }
+    if (!has(this.compo, 'node')) {
+      this.compo.node = this.node
+    }
+  },
   components: {
     draggable,
     VsCard,
