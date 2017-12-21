@@ -115,6 +115,8 @@ export default {
   methods: {
     currentView(name) {
       if (
+        this.compo &&
+        this.compo.field &&
         isArray(this.internalSchema.values[this.compo.field]) &&
         this.compo.type === components.text // array NUR Text-Felder erlaubt
       ) {

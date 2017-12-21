@@ -8,12 +8,12 @@ export default {
     },
     editValue: {
       get() {
-        if (this.compo) {
+        if (this.compo && this.compo.field) {
           return this.schema.values[this.compo.field]
         }
       },
       set(newValue) {
-        if (this.compo) {
+        if (this.compo && this.compo.field) {
           Vue.set(this.schema.values, this.compo.field, newValue)
         }
       }
