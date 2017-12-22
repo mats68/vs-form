@@ -1,4 +1,4 @@
-.container1 {
+.grid-container {
   margin-left: 15px;
   margin-right: 15px;
   padding-left: 15px;
@@ -7,7 +7,7 @@
   width: 100%;
 }
 
-.row {
+.grid-row {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: auto;

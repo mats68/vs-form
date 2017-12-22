@@ -1,18 +1,16 @@
 <template>
   <component :is="currentView(node)" v-bind="currentProperties(node)">
-    <div v-if="isContainer">
-      <div class="container1 row">
-        <div v-for="component in itemList" :class="colWidth(component)" :key="component.id">
-          <vs-item v-bind="currentProperties(component.node)"></vs-item>
-        </div>
+    <component v-if="isContainer" :is="isDraggable" class="grid-container grid-row" :class="isDraggableClass" :options="dragOptions" v-model="itemList">
+      <div v-for="component in itemList" :class="colAndRowSize(component)" :key="component.id">
+        <vs-item v-bind="currentProperties(component.node)"></vs-item>
       </div>
-    </div>
+    </component>
   </component>
 
   <!-- <component v-if="designMode" :is="currentView(node)" v-bind="currentProperties(node)">
     <v-container v-if="isContainer" fluid grid-list-md>
       <draggable class="layout row wrap dragArea" v-model="itemList" :options="dragOptions">
-        <v-flex v-for="component in itemList" :class="colWidth(component)" :key="component.id">
+        <v-flex v-for="component in itemList" :class="colAndRowSize(component)" :key="component.id">
           <vs-item v-bind="currentProperties(component.node)"></vs-item>
         </v-flex>
       </draggable>
@@ -21,7 +19,7 @@
   <component v-else :is="currentView(node)" v-bind="currentProperties(node)">
     <v-container v-if="isContainer" fluid grid-list-md>
       <v-layout row wrap>
-        <v-flex v-for="component in itemList" :class="colWidth(component)" :key="component.id">
+        <v-flex v-for="component in itemList" :class="colAndRowSize(component)" :key="component.id">
           <vs-item v-bind="currentProperties(component.node)"></vs-item>
         </v-flex>
       </v-layout>
@@ -104,6 +102,12 @@ export default {
     isContainer() {
       return this.compo && this.compo.hasOwnProperty('children')
     },
+    isDraggable() {
+      return this.designMode ? 'draggable' : 'div'
+    },
+    isDraggableClass() {
+      return this.designMode ? 'dragArea' : ''
+    },
     dragOptions() {
       return {
         group: this.internalSchema.id,
@@ -132,7 +136,7 @@ export default {
         options: this.options
       }
     },
-    colWidth(component) {
+    colAndRowSize(component) {
       // todo write test
       if (!component) {
         return
@@ -146,9 +150,14 @@ export default {
           return prevVal
         }
       }, '')
+      // always provide xs
       if (!component.xs) {
         res = res + ' xs-12'
-      } // always provide xs
+      }
+      if (component.rows) {
+        res = res + ' rows-' + component.rows
+      }
+
       return res
     }
   },
