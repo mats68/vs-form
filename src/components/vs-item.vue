@@ -1,6 +1,6 @@
 <template>
   <component :is="currentView(node)" v-bind="currentProperties(node)">
-    <component v-if="isContainer" :is="isDraggable" class="grid-container grid-row" :class="isDraggableClass" :options="dragOptions" v-model="itemList">
+    <component v-if="isContainer" :is="isDraggable" class="grid-container grid-row" :style="gridStyle" :class="isDraggableClass" :options="dragOptions" v-model="itemList">
       <div v-for="component in itemList" :class="colAndRowSize(component)" :key="component.id">
         <vs-item v-bind="currentProperties(component.node)"></vs-item>
       </div>
@@ -108,12 +108,18 @@ export default {
     isDraggableClass() {
       return this.designMode ? 'dragArea' : ''
     },
+    gridStyle() {
+      return {
+        gridRowGap: '10px',
+        gridColumnGap: '10px'
+      }
+    },
     dragOptions() {
       return {
         group: this.internalSchema.id,
         disabled: !this.designMode
       }
-    }
+    },
   },
   methods: {
     currentView(name) {

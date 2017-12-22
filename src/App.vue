@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { miniSchema, formatJSON } from 'vs-schema'
+import { schema2Cards, formatJSON } from 'vs-schema'
 // import Expr from 'expression-parser'
 // import math from 'mathjs'
 
@@ -67,7 +67,7 @@ export default {
   }),
   computed: {
     schema() {
-      return miniSchema
+      return schema2Cards
     },
     formatSchema() {
       return formatJSON(this.schema)
