@@ -22,9 +22,9 @@
 <script>
 import Vue from 'vue'
 import draggable from 'vuedraggable'
-import { isArray, has } from 'lodash'
+import { isArray } from 'lodash'
 
-import { components, getChildrenComponents } from 'vs-schema'
+import { components, getChildrenComponents, updateSchemaIds } from 'vs-schema'
 
 // Containers
 import VsCard from 'src/components/containers/vs-card'
@@ -127,12 +127,7 @@ export default {
     }
   },
   created() {
-    if (!has(this.compo, 'id')) {
-      this.compo.id = this.node
-    }
-    if (!has(this.compo, 'node')) {
-      this.compo.node = this.node
-    }
+    updateSchemaIds(this.internalSchema)
   },
   components: {
     draggable,

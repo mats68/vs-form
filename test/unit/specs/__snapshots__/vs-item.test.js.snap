@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`VsItem miniSchema deep render 1`] = `
+exports[`VsItem miniSchema deep render name component 1`] = `
 <div
   class="input-group input-group--dirty input-group--text-field primary--text"
 >
@@ -22,6 +22,56 @@ exports[`VsItem miniSchema deep render 1`] = `
     class="input-group__details"
   >
     <!---->
+  </div>
+</div>
+`;
+
+exports[`VsItem miniSchema deep render root component 1`] = `
+<div
+  class="elevation-0 card"
+  data-ripple="false"
+  style="height: auto;"
+>
+  <div
+    class="card__title"
+  >
+    Mini
+  </div>
+   
+  <div
+    class="container fluid grid-list-md"
+  >
+    <div
+      class="layout row wrap"
+    >
+      <div
+        class="flex xl6"
+      >
+        <div
+          class="input-group input-group--dirty input-group--text-field primary--text"
+        >
+          <label
+            for="name"
+          >
+            Name
+          </label>
+          <div
+            class="input-group__input"
+          >
+            <input
+              id="name"
+              tabindex="0"
+              type="text"
+            />
+          </div>
+          <div
+            class="input-group__details"
+          >
+            <!---->
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;

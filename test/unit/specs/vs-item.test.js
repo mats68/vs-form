@@ -14,7 +14,7 @@ Vue.component('vs-form', VsForm)
 Vue.component('vs-item', VsItem)
 
 describe('VsItem miniSchema', () => {
-  let Cmp, Cmp2
+  let Cmp, CmpName, CmpRoot
 
   beforeEach(() => {
     Cmp = shallow(VsItem, {
@@ -24,23 +24,35 @@ describe('VsItem miniSchema', () => {
       }
     })
 
-    Cmp2 = mount(VsItem, {
+    CmpName = mount(VsItem, {
       propsData: {
         schema: miniSchema,
         node: 'name'
       }
     })
+
+    CmpRoot = mount(VsItem, {
+      propsData: {
+        schema: miniSchema,
+        node: 'root'
+      }
+    })
+
   })
 
   it('shallow render', () => {
     expect(Cmp.element).toMatchSnapshot()
   })
 
-  it('deep render', () => {
-    expect(Cmp2.element).toMatchSnapshot()
+  it('deep render name component', () => {
+    expect(CmpName.element).toMatchSnapshot()
+  })
+
+  it('deep render root component', () => {
+    expect(CmpRoot.element).toMatchSnapshot()
   })
 
   it('is a vsitem component', () => {
-    expect(Cmp2.is(VsItem)).toBe(true)
+    expect(CmpName.is(VsItem)).toBe(true)
   })
 })

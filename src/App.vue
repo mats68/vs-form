@@ -35,14 +35,15 @@
       {{test1}}
       <br> {{test2}}
       <!-- <vs-item :schema="miniSchema" node="root" :designMode="designMode"></vs-item> -->
-      <vs-form :schema="miniSchema" :designMode="designMode"></vs-form>
-      {{miniSchema.values}}
+      <!-- <vs-form :schema="miniSchema" :designMode="designMode"></vs-form> -->
+      <vs-form :schema="schema" :designMode="designMode"></vs-form>
+      <!-- {{schema.values}} -->
     </v-content>
   </v-app>
 </template>
 
 <script>
-import { miniSchema, formatJSON } from 'vs-schema'
+import { schema, formatJSON } from 'vs-schema'
 // import Expr from 'expression-parser'
 // import math from 'mathjs'
 
@@ -61,8 +62,8 @@ export default {
     test2: ''
   }),
   computed: {
-    miniSchema() {
-      return miniSchema
+    schema() {
+      return schema
     },
     formatSchema() {
       return formatJSON(this.schema)
