@@ -30,6 +30,9 @@
       </v-btn>
     </v-toolbar>
     <v-content>
+      <div class="rahmen">
+        <v-card>Thaler</v-card>
+      </div>
       <v-text-field v-model="test"></v-text-field>
       <v-btn @click="eval1">Eval</v-btn>
       {{test1}}
@@ -43,7 +46,7 @@
 </template>
 
 <script>
-import { schema, formatJSON } from 'vs-schema'
+import { miniSchema, formatJSON } from 'vs-schema'
 // import Expr from 'expression-parser'
 // import math from 'mathjs'
 
@@ -57,13 +60,14 @@ export default {
   data: () => ({
     drawer: null,
     designMode: true,
-    test: 'Hallo ${ld.capitalize(v.vorname)} (${label("name")}: [name]) heute ist der ${date.format(curDate,"DD.MM.YYYY")}, Zeit ${date.format(curDate,"hh.mm.ss")}', // eslint-disable-line
+    test:
+      'Hallo ${ld.capitalize(v.vorname)} (${label("name")}: [name]) heute ist der ${date.format(curDate,"DD.MM.YYYY")}, Zeit ${date.format(curDate,"hh.mm.ss")}', // eslint-disable-line
     test1: '',
     test2: ''
   }),
   computed: {
     schema() {
-      return schema
+      return miniSchema
     },
     formatSchema() {
       return formatJSON(this.schema)
@@ -74,7 +78,6 @@ export default {
       // let expr = new Expr(schema)
       // this.test1 = expr.run(this.test)
       // this.test2 = expr.errors
-
       // return
       // try {
       //   console.log(expr.parse(this.test))
@@ -82,10 +85,8 @@ export default {
       //   console.log(error)
       // }
       // this.test1 = expr.run(this.test, schema)
-
       // const fn = expr.compile(this.test)
       // console.log(fn())
-
       // var scope = {
       // x: 3,
       // val: this.schema.values
@@ -99,3 +100,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.rahmen {
+  width: 100%;
+  padding: 10px;
+}
+</style>

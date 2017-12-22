@@ -1,5 +1,15 @@
 <template>
-  <component v-if="designMode" :is="currentView(node)" v-bind="currentProperties(node)">
+  <component :is="currentView(node)" v-bind="currentProperties(node)">
+    <div v-if="isContainer">
+      <div class="container1 row">
+        <div v-for="component in itemList" :class="colWidth(component)" :key="component.id">
+          <vs-item v-bind="currentProperties(component.node)"></vs-item>
+        </div>
+      </div>
+    </div>
+  </component>
+
+  <!-- <component v-if="designMode" :is="currentView(node)" v-bind="currentProperties(node)">
     <v-container v-if="isContainer" fluid grid-list-md>
       <draggable class="layout row wrap dragArea" v-model="itemList" :options="dragOptions">
         <v-flex v-for="component in itemList" :class="colWidth(component)" :key="component.id">
@@ -16,7 +26,7 @@
         </v-flex>
       </v-layout>
     </v-container>
-  </component>
+  </component> -->
 </template>
 
 <script>
@@ -123,7 +133,23 @@ export default {
       }
     },
     colWidth(component) {
-      return component && component.xl ? 'xl' + component.xl : 'xl2'
+      // todo write test
+      if (!component) {
+        return
+      }
+      const s = ['xs', 'sm', 'md', 'lg', 'xl']
+      let res = s.reduce((prevVal, currVal, idx) => {
+        if (component[currVal]) {
+          let cur = currVal + '-' + component[currVal]
+          return prevVal === '' ? cur : prevVal + ' ' + cur
+        } else {
+          return prevVal
+        }
+      }, '')
+      if (!component.xs) {
+        res = res + ' xs-12'
+      } // always provide xs
+      return res
     }
   },
   created() {
@@ -150,3 +176,5 @@ export default {
   min-height: 50px;
 }
 </style>
+
+

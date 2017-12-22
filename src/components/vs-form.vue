@@ -1,5 +1,5 @@
 <template>
-  <v-form :style="schema.style" >
+  <v-form class="containe1">
     <vs-item :schema="schema" :designMode="designMode" :node="node"></vs-item>
   </v-form>
 </template>
@@ -31,6 +31,3 @@ export default {
 }
 </script>
 
-<style>
-
-</style>

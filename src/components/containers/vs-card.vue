@@ -1,8 +1,8 @@
 <template>
-  <v-card :color="color" :style="style">
-    <v-card-title>{{label}}</v-card-title>
-    <slot></slot>
-  </v-card>
+    <v-card :color="color" class="container1">
+      <v-card-title>{{label}}</v-card-title>
+      <slot></slot>
+    </v-card>
 </template>
 
 <script>
@@ -13,6 +13,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>
+
+

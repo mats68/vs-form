@@ -8,6 +8,8 @@ import 'vuetify/dist/vuetify.css'
 import VsForm from 'src/components/vs-form'
 import VsItem from 'src/components/vs-item'
 
+import 'src/styles/grid.scss'
+
 Vue.use(Vuetify)
 
 Vue.config.productionTip = false

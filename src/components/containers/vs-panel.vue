@@ -1,5 +1,5 @@
 <template>
-  <v-card class="elevation-0" :color="color" :style="style">
+  <v-card class="elevation-0 container1" :color="color">
     <v-card-title>{{label}}</v-card-title>
     <slot></slot>
   </v-card>
@@ -13,7 +13,6 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
 
 </style>
