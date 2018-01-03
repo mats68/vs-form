@@ -1,5 +1,5 @@
 <template>
-  <v-form class="containe1">
+  <v-form>
     <vs-item :schema="schema" :designMode="designMode" :node="node"></vs-item>
   </v-form>
 </template>

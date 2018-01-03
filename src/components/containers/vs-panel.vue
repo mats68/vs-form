@@ -1,8 +1,8 @@
 <template>
-  <v-card class="elevation-0 container1" :color="color">
-    <v-card-title>{{label}}</v-card-title>
+  <div>
+    <p>{{label}}</p>
     <slot></slot>
-  </v-card>
+  </div>
 </template>
 
 <script>
