@@ -27,48 +27,93 @@ exports[`VsItem miniSchema deep render name component 1`] = `
 `;
 
 exports[`VsItem miniSchema deep render root component 1`] = `
-<div
-  class="elevation-0 card"
-  data-ripple="false"
-  style="height: auto;"
->
-  <div
-    class="card__title"
-  >
+<div>
+  <p>
     Mini
-  </div>
+  </p>
    
   <div
-    class="container fluid grid-list-md"
+    class="grid-container grid-row"
+    options="[object Object]"
   >
     <div
-      class="layout row wrap"
+      class="md-4 xs-12 rows-2"
     >
       <div
-        class="flex xl6"
+        class="input-group input-group--dirty input-group--text-field primary--text"
       >
-        <div
-          class="input-group input-group--dirty input-group--text-field primary--text"
+        <label
+          for="name"
         >
-          <label
-            for="name"
-          >
-            Name
-          </label>
-          <div
-            class="input-group__input"
-          >
-            <input
-              id="name"
-              tabindex="0"
-              type="text"
-            />
-          </div>
-          <div
-            class="input-group__details"
-          >
-            <!---->
-          </div>
+          Name
+        </label>
+        <div
+          class="input-group__input"
+        >
+          <input
+            id="name"
+            tabindex="0"
+            type="text"
+          />
+        </div>
+        <div
+          class="input-group__details"
+        >
+          <!---->
+        </div>
+      </div>
+    </div>
+    <div
+      class="xl-6 xs-12"
+    >
+      <div
+        class="input-group input-group--text-field primary--text"
+      >
+        <label
+          for="vorname"
+        >
+          Vorname
+        </label>
+        <div
+          class="input-group__input"
+        >
+          <input
+            id="vorname"
+            tabindex="0"
+            type="text"
+          />
+        </div>
+        <div
+          class="input-group__details"
+        >
+          <!---->
+        </div>
+      </div>
+    </div>
+    <div
+      class="xl-6 xs-12"
+    >
+      <div
+        class="input-group input-group--text-field primary--text"
+      >
+        <label
+          for="strasse"
+        >
+          Strasse
+        </label>
+        <div
+          class="input-group__input"
+        >
+          <input
+            id="strasse"
+            tabindex="0"
+            type="text"
+          />
+        </div>
+        <div
+          class="input-group__details"
+        >
+          <!---->
         </div>
       </div>
     </div>
