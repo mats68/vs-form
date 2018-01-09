@@ -4,7 +4,7 @@ import { shallow, mount } from 'vue-test-utils'
 import VsForm from 'src/components/vs-form'
 import VsItem from 'src/components/vs-item'
 
-import { miniSchema } from 'vs-schema'
+import { Schema, examples } from 'vs-schema'
 
 import Vuetify from 'vuetify'
 Vue.use(Vuetify)
@@ -19,21 +19,21 @@ describe('VsItem miniSchema', () => {
   beforeEach(() => {
     Cmp = shallow(VsItem, {
       propsData: {
-        schema: miniSchema,
+        schema: Schema(examples.miniSchema),
         node: 'name'
       }
     })
 
     CmpName = mount(VsItem, {
       propsData: {
-        schema: miniSchema,
+        schema: Schema(examples.miniSchema),
         node: 'name'
       }
     })
 
     CmpRoot = mount(VsItem, {
       propsData: {
-        schema: miniSchema,
+        schema: Schema(examples.miniSchema),
         node: 'root'
       }
     })

@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import {updateSchemaIds} from 'vs-schema'
 
 export default {
   props: {
@@ -23,7 +22,7 @@ export default {
     }
   },
   created() {
-    updateSchemaIds(this.schema)
+    // updateSchemaIds(this.schema)
     // console.log('created vs-form')
 
     // console.log(formatJSON(this.schema))

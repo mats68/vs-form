@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { schema2Cards, formatJSON } from 'vs-schema'
+import {Schema, examples} from 'vs-schema'
 // import Expr from 'expression-parser'
 // import math from 'mathjs'
 
@@ -55,6 +55,7 @@ import { schema2Cards, formatJSON } from 'vs-schema'
 
 export default {
   data: () => ({
+    schema: {},
     drawer: null,
     designMode: true,
     test:
@@ -63,37 +64,14 @@ export default {
     test2: ''
   }),
   computed: {
-    schema() {
-      return schema2Cards
-    },
-    formatSchema() {
-      return formatJSON(this.schema)
-    }
   },
   methods: {
-    eval1() {
-      // let expr = new Expr(schema)
-      // this.test1 = expr.run(this.test)
-      // this.test2 = expr.errors
-      // return
-      // try {
-      //   console.log(expr.parse(this.test))
-      // } catch (error) {
-      //   console.log(error)
-      // }
-      // this.test1 = expr.run(this.test, schema)
-      // const fn = expr.compile(this.test)
-      // console.log(fn())
-      // var scope = {
-      // x: 3,
-      // val: this.schema.values
-      // }
-      // debugger
-      // this.test1 = math.eval(this.test, scope)
-    }
   },
   props: {
     source: String
+  },
+  created() {
+    this.schema = Schema(examples.schema2Cards)
   }
 }
 </script>

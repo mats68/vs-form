@@ -32,7 +32,7 @@ import Vue from 'vue'
 import draggable from 'vuedraggable'
 import { isArray } from 'lodash'
 
-import { components, getChildrenComponents, updateSchemaIds } from 'vs-schema'
+// import { components, getChildrenComponents, updateSchemaIds } from 'vs-schema'
 
 // Containers
 import VsCard from 'src/components/containers/vs-card'
@@ -82,17 +82,17 @@ export default {
   },
   computed: {
     compo() {
-      return this.internalSchema.components[this.node]
+      return this.internalSchema.schema.components[this.node]
     },
     itemList: {
       get() {
-        return getChildrenComponents(this.internalSchema, this.node)
+        return this.internalSchema.getChildrenComponents(this.node) // getChildrenComponents(this.internalSchema, this.node)
       },
       set(value) {
         if (this.designMode && this.compo) {
           const children = value.map(compo => compo.id)
           Vue.set(
-            this.internalSchema.components[this.node],
+            this.internalSchema.schema.components[this.node],
             'children',
             children
           )
@@ -116,7 +116,7 @@ export default {
     },
     dragOptions() {
       return {
-        group: this.internalSchema.id,
+        group: this.internalSchema.schema.id,
         disabled: !this.designMode
       }
     },
@@ -126,8 +126,8 @@ export default {
       if (
         this.compo &&
         this.compo.field &&
-        isArray(this.internalSchema.values[this.compo.field]) &&
-        this.compo.type === components.text // array NUR Text-Felder erlaubt
+        isArray(this.internalSchema.schema.values[this.compo.field]) &&
+        this.compo.type === this.internalSchema.components.text // array NUR Text-Felder erlaubt
       ) {
         return VsTableSingleEditor
       } else {
@@ -168,7 +168,7 @@ export default {
     }
   },
   created() {
-    updateSchemaIds(this.internalSchema)
+    // updateSchemaIds(this.internalSchema)
   },
   components: {
     draggable,
