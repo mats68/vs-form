@@ -1,35 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`VsItem miniSchema deep render name component 1`] = `
-<div
-  class="input-group input-group--dirty input-group--text-field primary--text"
->
-  <label
-    for="name"
-  >
-    Name
-  </label>
-  <div
-    class="input-group__input"
-  >
-    <input
-      id="name"
-      tabindex="0"
-      type="text"
-    />
-  </div>
-  <div
-    class="input-group__details"
-  >
-    <!---->
-  </div>
-</div>
-`;
-
-exports[`VsItem miniSchema deep render root component 1`] = `
 <div>
   <p>
-    Mini
+    
   </p>
    
   <div
@@ -37,10 +11,10 @@ exports[`VsItem miniSchema deep render root component 1`] = `
     options="[object Object]"
   >
     <div
-      class="md-4 xs-12 rows-2"
+      class=" xs-12"
     >
       <div
-        class="input-group input-group--dirty input-group--text-field primary--text"
+        class="input-group input-group--text-field primary--text"
       >
         <label
           for="name"
@@ -64,21 +38,251 @@ exports[`VsItem miniSchema deep render root component 1`] = `
       </div>
     </div>
     <div
-      class="xl-6 xs-12"
+      class=" xs-12"
+    >
+      <div
+        class="card"
+        data-ripple="false"
+        style="height: auto;"
+      >
+        <div
+          class="card__title"
+        >
+          
+        </div>
+         
+        <div
+          class="grid-container grid-row"
+          options="[object Object]"
+        >
+          <div
+            class=" xs-12"
+          >
+            <div
+              class="input-group input-group--dirty input-group--text-field primary--text"
+            >
+              <label
+                for="nameIsrOtherKeyThanField"
+              >
+                Nummer
+              </label>
+              <div
+                class="input-group__input"
+              >
+                <input
+                  id="nameIsrOtherKeyThanField"
+                  tabindex="0"
+                  type="text"
+                />
+              </div>
+              <div
+                class="input-group__details"
+              >
+                <!---->
+              </div>
+            </div>
+          </div>
+          <div
+            class=" xs-12"
+          >
+            <div>
+              <p>
+                
+              </p>
+               
+              <div
+                class="grid-container grid-row"
+                options="[object Object]"
+              >
+                <div
+                  class=" xs-12"
+                >
+                  <div
+                    class="input-group input-group--dirty input-group--text-field primary--text"
+                  >
+                    <label
+                      for="sub-email"
+                    >
+                      Email
+                    </label>
+                    <div
+                      class="input-group__input"
+                    >
+                      <input
+                        id="sub-email"
+                        tabindex="0"
+                        type="text"
+                      />
+                    </div>
+                    <div
+                      class="input-group__details"
+                    >
+                      <!---->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class=" xs-12"
+          >
+            <div>
+              <p>
+                
+              </p>
+               
+              <div
+                class="grid-container grid-row"
+                options="[object Object]"
+              >
+                <div
+                  class=" xs-12"
+                >
+                  <div
+                    class="input-group input-group--dirty input-group--text-field primary--text"
+                  >
+                    <label
+                      for="duplicateSub-email"
+                    >
+                      Email
+                    </label>
+                    <div
+                      class="input-group__input"
+                    >
+                      <input
+                        id="duplicateSub-email"
+                        tabindex="0"
+                        type="text"
+                      />
+                    </div>
+                    <div
+                      class="input-group__details"
+                    >
+                      <!---->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class=" xs-12"
+          >
+            <div>
+              <p>
+                
+              </p>
+               
+              <div
+                class="grid-container grid-row"
+                options="[object Object]"
+              >
+                <div
+                  class=" xs-12"
+                >
+                  <div
+                    class="input-group input-group--dirty input-group--text-field primary--text"
+                  >
+                    <label
+                      for="sub_with_sub-email"
+                    >
+                      Email
+                    </label>
+                    <div
+                      class="input-group__input"
+                    >
+                      <input
+                        id="sub_with_sub-email"
+                        tabindex="0"
+                        type="text"
+                      />
+                    </div>
+                    <div
+                      class="input-group__details"
+                    >
+                      <!---->
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class=" xs-12"
+                >
+                  <div>
+                    <p>
+                      
+                    </p>
+                     
+                    <div
+                      class="grid-container grid-row"
+                      options="[object Object]"
+                    >
+                      <div
+                        class=" xs-12"
+                      >
+                        <div
+                          class="input-group input-group--dirty input-group--text-field primary--text"
+                        >
+                          <label
+                            for="sub_with_sub-sub-email"
+                          >
+                            Email
+                          </label>
+                          <div
+                            class="input-group__input"
+                          >
+                            <input
+                              id="sub_with_sub-sub-email"
+                              tabindex="0"
+                              type="text"
+                            />
+                          </div>
+                          <div
+                            class="input-group__details"
+                          >
+                            <!---->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`VsItem miniSchema deep render root component 1`] = `
+<div>
+  <p>
+    
+  </p>
+   
+  <div
+    class="grid-container grid-row"
+    options="[object Object]"
+  >
+    <div
+      class=" xs-12"
     >
       <div
         class="input-group input-group--text-field primary--text"
       >
         <label
-          for="vorname"
+          for="name"
         >
-          Vorname
+          Name
         </label>
         <div
           class="input-group__input"
         >
           <input
-            id="vorname"
+            id="name"
             tabindex="0"
             type="text"
           />
@@ -91,29 +295,218 @@ exports[`VsItem miniSchema deep render root component 1`] = `
       </div>
     </div>
     <div
-      class="xl-6 xs-12"
+      class=" xs-12"
     >
       <div
-        class="input-group input-group--text-field primary--text"
+        class="card"
+        data-ripple="false"
+        style="height: auto;"
       >
-        <label
-          for="strasse"
-        >
-          Strasse
-        </label>
         <div
-          class="input-group__input"
+          class="card__title"
         >
-          <input
-            id="strasse"
-            tabindex="0"
-            type="text"
-          />
+          
         </div>
+         
         <div
-          class="input-group__details"
+          class="grid-container grid-row"
+          options="[object Object]"
         >
-          <!---->
+          <div
+            class=" xs-12"
+          >
+            <div
+              class="input-group input-group--dirty input-group--text-field primary--text"
+            >
+              <label
+                for="nameIsrOtherKeyThanField"
+              >
+                Nummer
+              </label>
+              <div
+                class="input-group__input"
+              >
+                <input
+                  id="nameIsrOtherKeyThanField"
+                  tabindex="0"
+                  type="text"
+                />
+              </div>
+              <div
+                class="input-group__details"
+              >
+                <!---->
+              </div>
+            </div>
+          </div>
+          <div
+            class=" xs-12"
+          >
+            <div>
+              <p>
+                
+              </p>
+               
+              <div
+                class="grid-container grid-row"
+                options="[object Object]"
+              >
+                <div
+                  class=" xs-12"
+                >
+                  <div
+                    class="input-group input-group--dirty input-group--text-field primary--text"
+                  >
+                    <label
+                      for="sub-email"
+                    >
+                      Email
+                    </label>
+                    <div
+                      class="input-group__input"
+                    >
+                      <input
+                        id="sub-email"
+                        tabindex="0"
+                        type="text"
+                      />
+                    </div>
+                    <div
+                      class="input-group__details"
+                    >
+                      <!---->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class=" xs-12"
+          >
+            <div>
+              <p>
+                
+              </p>
+               
+              <div
+                class="grid-container grid-row"
+                options="[object Object]"
+              >
+                <div
+                  class=" xs-12"
+                >
+                  <div
+                    class="input-group input-group--dirty input-group--text-field primary--text"
+                  >
+                    <label
+                      for="duplicateSub-email"
+                    >
+                      Email
+                    </label>
+                    <div
+                      class="input-group__input"
+                    >
+                      <input
+                        id="duplicateSub-email"
+                        tabindex="0"
+                        type="text"
+                      />
+                    </div>
+                    <div
+                      class="input-group__details"
+                    >
+                      <!---->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class=" xs-12"
+          >
+            <div>
+              <p>
+                
+              </p>
+               
+              <div
+                class="grid-container grid-row"
+                options="[object Object]"
+              >
+                <div
+                  class=" xs-12"
+                >
+                  <div
+                    class="input-group input-group--dirty input-group--text-field primary--text"
+                  >
+                    <label
+                      for="sub_with_sub-email"
+                    >
+                      Email
+                    </label>
+                    <div
+                      class="input-group__input"
+                    >
+                      <input
+                        id="sub_with_sub-email"
+                        tabindex="0"
+                        type="text"
+                      />
+                    </div>
+                    <div
+                      class="input-group__details"
+                    >
+                      <!---->
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class=" xs-12"
+                >
+                  <div>
+                    <p>
+                      
+                    </p>
+                     
+                    <div
+                      class="grid-container grid-row"
+                      options="[object Object]"
+                    >
+                      <div
+                        class=" xs-12"
+                      >
+                        <div
+                          class="input-group input-group--dirty input-group--text-field primary--text"
+                        >
+                          <label
+                            for="sub_with_sub-sub-email"
+                          >
+                            Email
+                          </label>
+                          <div
+                            class="input-group__input"
+                          >
+                            <input
+                              id="sub_with_sub-sub-email"
+                              tabindex="0"
+                              type="text"
+                            />
+                          </div>
+                          <div
+                            class="input-group__details"
+                          >
+                            <!---->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -122,27 +515,25 @@ exports[`VsItem miniSchema deep render root component 1`] = `
 `;
 
 exports[`VsItem miniSchema shallow render 1`] = `
-<div
-  class="input-group input-group--dirty input-group--text-field primary--text"
->
-  <label
-    for="name"
-  >
-    Name
-  </label>
+<div>
+  <p>
+    
+  </p>
+   
   <div
-    class="input-group__input"
+    class="grid-container grid-row"
+    options="[object Object]"
   >
-    <input
-      id="name"
-      tabindex="0"
-      type="text"
-    />
-  </div>
-  <div
-    class="input-group__details"
-  >
-    <!---->
+    <div
+      class=" xs-12"
+    >
+      <!---->
+    </div>
+    <div
+      class=" xs-12"
+    >
+      <!---->
+    </div>
   </div>
 </div>
 `;

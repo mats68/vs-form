@@ -14,8 +14,6 @@ import Vue from 'vue'
 import draggable from 'vuedraggable'
 import { isArray } from 'lodash'
 
-// import { components, getChildrenComponents, updateSchemaIds } from 'vs-schema'
-
 // Containers
 import VsCard from 'src/components/containers/vs-card'
 import VsPanel from 'src/components/containers/vs-panel'
@@ -72,7 +70,7 @@ export default {
     },
     itemList: {
       get() {
-        debugger
+        // debugger
         return this.schemaManager.getChildrenComponents(this.internalSchema, this.node) // getChildrenComponents(this.internalSchema, this.node)
       },
       set(value) {

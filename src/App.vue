@@ -44,7 +44,7 @@
 
 <script>
 
-import {Schema, examples} from 'vs-schema'
+import {SchemaManager, examples} from 'vs-schema'
 // import Expr from 'expression-parser'
 // import math from 'mathjs'
 
@@ -73,7 +73,7 @@ export default {
     source: String
   },
   created() {
-    this.schemaManager = Schema(examples.listSchemas.schemaCorrectType, examples.listSchemas)
+    this.schemaManager = SchemaManager(examples.listSchemas.schemaCorrectType, examples.listSchemas)
     this.schema = this.schemaManager.schema
     console.log('schemaManger', this.schemaManager)
   }

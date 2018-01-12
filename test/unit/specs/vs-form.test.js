@@ -4,7 +4,7 @@ import { shallow } from 'vue-test-utils'
 import VsForm from 'src/components/vs-form'
 import VsItem from 'src/components/vs-item'
 
-import {Schema, examples} from 'vs-schema'
+import {SchemaManager, examples} from 'vs-schema'
 
 import Vuetify from 'vuetify'
 Vue.use(Vuetify)
@@ -17,9 +17,12 @@ describe('VsForm miniSchema', () => {
   let Cmp
 
   beforeEach(() => {
+    let schemaManager = SchemaManager(examples.listSchemas.schemaCorrectType, examples.listSchemas)
+    let schema = schemaManager.schema
+
     Cmp = shallow(VsForm, {
       propsData: {
-        schema: examples.miniSchema
+        schema: schema
       }
     })
   })
