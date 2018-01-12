@@ -1,6 +1,6 @@
 <template>
   <v-form>
-    <vs-item :schema="schema" :designMode="designMode" :node="node"></vs-item>
+    <vs-item :schema="schema" :schemaManager="schemaManager" :designMode="designMode" :node="node"></vs-item>
   </v-form>
 </template>
 
@@ -13,6 +13,10 @@ export default {
       default: 'root'
     },
     schema: {
+      type: Object,
+      required: true
+    },
+    schemaManager: {
       type: Object,
       required: true
     },

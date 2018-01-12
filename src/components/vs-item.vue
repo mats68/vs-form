@@ -7,24 +7,6 @@
     </component>
   </component>
 
-  <!-- <component v-if="designMode" :is="currentView(node)" v-bind="currentProperties(node)">
-    <v-container v-if="isContainer" fluid grid-list-md>
-      <draggable class="layout row wrap dragArea" v-model="itemList" :options="dragOptions">
-        <v-flex v-for="component in itemList" :class="colAndRowSize(component)" :key="component.id">
-          <vs-item v-bind="currentProperties(component.node)"></vs-item>
-        </v-flex>
-      </draggable>
-    </v-container>
-  </component>
-  <component v-else :is="currentView(node)" v-bind="currentProperties(node)">
-    <v-container v-if="isContainer" fluid grid-list-md>
-      <v-layout row wrap>
-        <v-flex v-for="component in itemList" :class="colAndRowSize(component)" :key="component.id">
-          <vs-item v-bind="currentProperties(component.node)"></vs-item>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </component> -->
 </template>
 
 <script>
@@ -69,6 +51,10 @@ export default {
       type: Object,
       required: true
     },
+    schemaManager: {
+      type: Object,
+      required: true
+    },
     designMode: {
       type: Boolean,
       default: false
@@ -82,17 +68,18 @@ export default {
   },
   computed: {
     compo() {
-      return this.internalSchema.schema.components[this.node]
+      return this.internalSchema.components[this.node]
     },
     itemList: {
       get() {
-        return this.internalSchema.getChildrenComponents(this.node) // getChildrenComponents(this.internalSchema, this.node)
+        debugger
+        return this.schemaManager.getChildrenComponents(this.internalSchema, this.node) // getChildrenComponents(this.internalSchema, this.node)
       },
       set(value) {
         if (this.designMode && this.compo) {
           const children = value.map(compo => compo.id)
           Vue.set(
-            this.internalSchema.schema.components[this.node],
+            this.internalSchema.components[this.node],
             'children',
             children
           )
@@ -116,7 +103,7 @@ export default {
     },
     dragOptions() {
       return {
-        group: this.internalSchema.schema.id,
+        group: this.internalSchema.id,
         disabled: !this.designMode
       }
     },
@@ -126,7 +113,7 @@ export default {
       if (
         this.compo &&
         this.compo.field &&
-        isArray(this.internalSchema.schema.values[this.compo.field]) &&
+        isArray(this.internalSchema.values[this.compo.field]) &&
         this.compo.type === this.internalSchema.components.text // array NUR Text-Felder erlaubt
       ) {
         return VsTableSingleEditor
@@ -139,7 +126,8 @@ export default {
         schema: this.internalSchema,
         node: name,
         designMode: this.designMode,
-        options: this.options
+        options: this.options,
+        schemaManager: this.schemaManager
       }
     },
     colAndRowSize(component) {

@@ -4,7 +4,7 @@ import { shallow } from 'vue-test-utils'
 import VsForm from 'src/components/vs-form'
 import VsItem from 'src/components/vs-item'
 
-import { examples } from 'vs-schema'
+import {Schema, examples} from 'vs-schema'
 
 import Vuetify from 'vuetify'
 Vue.use(Vuetify)

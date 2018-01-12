@@ -1,20 +1,20 @@
 import Vue from 'vue'
 
 export default {
-  props: ['schema', 'node', 'designMode', 'options'],
+  props: ['schema', 'node', 'designMode', 'options', 'schemaManager'],
   computed: {
     compo() {
-      return this.schema.schema.components[this.node]
+      return this.schema.components[this.node]
     },
     editValue: {
       get() {
         if (this.compo && this.compo.field) {
-          return this.schema.schema.values[this.compo.field]
+          return this.schema.values[this.compo.field]
         }
       },
       set(newValue) {
         if (this.compo && this.compo.field) {
-          Vue.set(this.schema.schema.values, this.compo.field, newValue)
+          Vue.set(this.schema.values, this.compo.field, newValue)
         }
       }
     },
