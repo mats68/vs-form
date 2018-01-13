@@ -33,9 +33,8 @@
 </template>
 
 <script>
-import mixin from 'src/components/vs-item-mixin'
-
-import strMixin from 'src/utils/string-mixin'
+import mixin from '../vs-item-mixin'
+import strMixin from '../../utils/string-mixin'
 
 export default {
   mixins: [mixin, strMixin],

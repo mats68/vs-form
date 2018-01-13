@@ -15,29 +15,29 @@ import draggable from 'vuedraggable'
 import { isArray } from 'lodash'
 
 // Containers
-import VsCard from 'src/components/containers/vs-card'
-import VsPanel from 'src/components/containers/vs-panel'
-import VsSubschema from 'src/components/containers/vs-subschema'
+// import VsCard from 'src/components/containers/vs-card'
+// import VsPanel from 'src/components/containers/vs-panel'
+// import VsSubschema from 'src/components/containers/vs-subschema'
 
 // Fields
-import VsTableSingleEditor from 'src/components/fields/vs-table-single-editor'
-import VsTextField from 'src/components/fields/vs-text-field'
-import VsSlider from 'src/components/fields/vs-slider'
-import VsCheckbox from 'src/components/fields/vs-checkbox'
+import VsTableSingleEditor from '../components/fields/vs-table-single-editor'
+// import VsTextField from 'src/components/fields/vs-text-field'
+// import VsSlider from 'src/components/fields/vs-slider'
+// import VsCheckbox from 'src/components/fields/vs-checkbox'
 
 export default {
   name: 'vs-item',
   data: function() {
     return {
       internalSchema: this.schema, // nötig sonst geht drag drop nicht
-      views: {
-        card: VsCard,
-        panel: VsPanel,
-        subschema: VsSubschema,
-        text: VsTextField,
-        checkbox: VsCheckbox,
-        slider: VsSlider
-      }
+      // views: {
+      //   card: VsCard,
+      //   panel: VsPanel,
+      //   subschema: VsSubschema,
+      //   text: VsTextField,
+      //   checkbox: VsCheckbox,
+      //   slider: VsSlider
+      // }
     }
   },
   props: {
@@ -116,7 +116,7 @@ export default {
       ) {
         return VsTableSingleEditor
       } else {
-        return this.views[this.compo.type]
+        return Vue.vsform.views[this.compo.type]
       }
     },
     currentProperties(name) {
@@ -158,13 +158,6 @@ export default {
   },
   components: {
     draggable,
-    VsCard,
-    VsPanel,
-    VsSubschema,
-    VsTableSingleEditor,
-    VsTextField,
-    VsSlider,
-    VsCheckbox
   },
   mounted() {
     // console.log('components', components)

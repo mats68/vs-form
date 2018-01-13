@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import mixin from 'src/components/vs-item-mixin'
+import mixin from '../vs-item-mixin'
 
 export default {
-  mixins: [mixin]
+  mixins: [mixin],
 }
 </script>
 

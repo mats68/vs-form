@@ -1,4 +1,4 @@
-import strings from 'src/utils/strings'
+import strings from './strings'
 
 export default {
   methods: {
