@@ -5,7 +5,7 @@ import App from './App'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.css'
 
-import vsform from './index'
+import {vsform} from './index'
 import 'src/styles/grid.scss'
 
 Vue.use(Vuetify)

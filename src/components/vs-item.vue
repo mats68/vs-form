@@ -14,6 +14,8 @@ import Vue from 'vue'
 import draggable from 'vuedraggable'
 import { isArray } from 'lodash'
 
+import {components} from '../index'
+
 // Containers
 // import VsCard from 'src/components/containers/vs-card'
 // import VsPanel from 'src/components/containers/vs-panel'
@@ -116,7 +118,8 @@ export default {
       ) {
         return VsTableSingleEditor
       } else {
-        return Vue.vsform.views[this.compo.type]
+        debugger
+        return components[this.compo.type]
       }
     },
     currentProperties(name) {

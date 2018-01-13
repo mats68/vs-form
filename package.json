@@ -2,6 +2,7 @@
   "name": "vs-form",
   "version": "1.0.0",
   "description": "Schema Form with Vue and Vuetify",
+  "main": "src/index.js",
   "author": "Matthias <mthaler@gmx.ch>",
   "private": true,
   "scripts": {
