@@ -1,11 +1,14 @@
 <template>
-  <component :is="currentView(node)" v-bind="currentProperties(node)">
-    <component v-if="isContainer" :is="isDraggable" class="grid-container grid-row" :style="gridStyle" :class="isDraggableClass" :options="dragOptions" v-model="itemList">
-      <div v-for="component in itemList" :class="colAndRowSize(component)" :key="component.id">
-        <vs-item v-bind="currentProperties(component.node)"></vs-item>
-      </div>
+  <div @click.stop="changeSelection($event)">
+    <div v-if="designMode" :class="{focused: isFocused, selected: isSelected}"></div>
+    <component :is="currentView(node)" v-bind="currentProperties(node)">
+      <component v-if="isContainer" :is="isDraggable" class="grid-container grid-row" :style="gridStyle" :class="isDraggableClass" :options="dragOptions" v-model="itemList">
+        <div v-for="component in itemList" :class="colAndRowSize(component)" :key="component.id">
+          <vs-item v-bind="currentProperties(component.node)"></vs-item>
+        </div>
+      </component>
     </component>
-  </component>
+  </div>
 
 </template>
 
@@ -14,32 +17,16 @@ import Vue from 'vue'
 import draggable from 'vuedraggable'
 import { isArray } from 'lodash'
 
-import {components} from '../index'
-
-// Containers
-// import VsCard from 'src/components/containers/vs-card'
-// import VsPanel from 'src/components/containers/vs-panel'
-// import VsSubschema from 'src/components/containers/vs-subschema'
+import { components } from '../index'
 
 // Fields
 import VsTableSingleEditor from '../components/fields/vs-table-single-editor'
-// import VsTextField from 'src/components/fields/vs-text-field'
-// import VsSlider from 'src/components/fields/vs-slider'
-// import VsCheckbox from 'src/components/fields/vs-checkbox'
 
 export default {
   name: 'vs-item',
   data: function() {
     return {
-      internalSchema: this.schema, // nötig sonst geht drag drop nicht
-      // views: {
-      //   card: VsCard,
-      //   panel: VsPanel,
-      //   subschema: VsSubschema,
-      //   text: VsTextField,
-      //   checkbox: VsCheckbox,
-      //   slider: VsSlider
-      // }
+      internalSchema: this.schema // nötig sonst geht drag drop nicht
     }
   },
   props: {
@@ -73,7 +60,10 @@ export default {
     itemList: {
       get() {
         // debugger
-        return this.schemaManager.getChildrenComponents(this.internalSchema, this.node) // getChildrenComponents(this.internalSchema, this.node)
+        return this.schemaManager.getChildrenComponents(
+          this.internalSchema,
+          this.node
+        ) // getChildrenComponents(this.internalSchema, this.node)
       },
       set(value) {
         if (this.designMode && this.compo) {
@@ -107,6 +97,12 @@ export default {
         disabled: !this.designMode
       }
     },
+    isFocused() {
+      return this.schemaManager.selection.focused === this.compo.id
+    },
+    isSelected() {
+      return !this.isFocused && this.schemaManager.selection.selected.includes(this.compo.id)
+    }
   },
   methods: {
     currentView(name) {
@@ -118,7 +114,7 @@ export default {
       ) {
         return VsTableSingleEditor
       } else {
-        debugger
+        // debugger
         return components[this.compo.type]
       }
     },
@@ -154,13 +150,37 @@ export default {
       }
 
       return res
+    },
+    changeSelection(e) {
+      if (!this.designMode) return
+      let sel = this.schemaManager.selection
+      if (e.shiftKey || e.ctrlKey) {
+        // multiselection
+        const ind = sel.selected.indexOf(this.compo.id)
+        if (ind === -1) {
+          sel.selected.push(this.compo.id)
+          sel.focused = this.compo.id
+        } else {
+          if (sel.selected.length > 1) {
+            sel.selected.splice(ind,1)
+            sel.focused = sel.selected[0]
+          }
+        }
+      } else {
+        // single sel.selectedection
+        sel.focused = this.compo.id
+        sel.selected = [this.compo.id]
+        // sel.selected.push(this.compo.id)
+      }
+      // console.log('focused', foc)
+      // console.log('sel.selectedected', sel.selected)
     }
   },
   created() {
     // updateSchemaIds(this.internalSchema)
   },
   components: {
-    draggable,
+    draggable
   },
   mounted() {
     // console.log('components', components)
@@ -172,6 +192,24 @@ export default {
 .dragArea {
   min-height: 50px;
 }
+.focused {
+  box-sizing: border-box;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: greenyellow;
+  border: 1px solid #333;
+}
+
+.selected {
+  box-sizing: border-box;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: lightgray;
+  border: 1px solid #333;
+}
+
 </style>
 
 
