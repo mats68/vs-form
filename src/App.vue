@@ -36,7 +36,7 @@
       <!-- <br> {{test2}} -->
       <!-- <vs-item :schema="miniSchema" node="root" :designMode="designMode"></vs-item> -->
       <!-- <vs-form :schema="miniSchema" :designMode="designMode"></vs-form> -->
-      <vs-form :schema="schema" :schemaManager="schemaManager" :designMode="designMode"></vs-form>
+      <vs-form :schema="schema" :listSchemas="listSchemas" :designMode="designMode"></vs-form>
       <!-- {{schema.values}} -->
     </v-content>
   </v-app>
@@ -44,7 +44,7 @@
 
 <script>
 
-import {SchemaManager, examples} from 'vs-schema'
+import {examples} from 'vs-schema'
 // import Expr from 'expression-parser'
 // import math from 'mathjs'
 
@@ -57,7 +57,7 @@ import {SchemaManager, examples} from 'vs-schema'
 export default {
   data: () => ({
     schema: {},
-    schemaManager: {},
+    listSchemas: {},
     drawer: null,
     designMode: true,
     test:
@@ -73,9 +73,10 @@ export default {
     source: String
   },
   created() {
-    this.schemaManager = SchemaManager(examples.listSchemas.schemaCorrectType, examples.listSchemas)
-    this.schema = this.schemaManager.schema
-    console.log('schemaManger', this.schemaManager)
+    // this.schemaManager = SchemaManager(examples.listSchemas.schemaCorrectType, examples.listSchemas)
+    this.schema = examples.listSchemas.schemaCorrectType // this.schemaManager.schema
+    this.listSchemas = examples.listSchemas
+    // console.log('schemaManger', this.schemaManager)
   }
 }
 </script>

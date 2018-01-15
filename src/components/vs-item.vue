@@ -1,3 +1,4 @@
+          selection.push(comp)
 <template>
   <div @click.stop="changeSelection($event)">
     <div v-if="designMode" :class="{focused: isFocused, selected: isSelected}"></div>
@@ -15,18 +16,19 @@
 <script>
 import Vue from 'vue'
 import draggable from 'vuedraggable'
-import { isArray } from 'lodash'
+// import { isArray } from 'lodash'
 
-import { components } from '../index'
+import vsform from '../index'
+import { EventBus } from './event-bus.js'
 
 // Fields
-import VsTableSingleEditor from '../components/fields/vs-table-single-editor'
+// import VsTableSingleEditor from '../components/fields/vs-table-single-editor'
 
 export default {
   name: 'vs-item',
   data: function() {
     return {
-      internalSchema: this.schema // nötig sonst geht drag drop nicht
+      internalSchema: this.schema, // nötig sonst geht drag drop nicht
     }
   },
   props: {
@@ -45,6 +47,10 @@ export default {
     designMode: {
       type: Boolean,
       default: false
+    },
+    selection: {
+      type: Array,
+      required: true
     },
     options: {
       type: Object,
@@ -98,15 +104,17 @@ export default {
       }
     },
     isFocused() {
-      return this.schemaManager.selection.focused === this.compo.id
+      return this.selection.length === 1 && this.selection[0] === this.compo
     },
     isSelected() {
-      return !this.isFocused && this.schemaManager.selection.selected.includes(this.compo.id)
+      return !this.isFocused && this.selection.includes(this.compo)
     }
   },
   methods: {
     currentView(name) {
-      if (
+      return vsform.components[this.compo.type]
+
+    /*       if (
         this.compo &&
         this.compo.field &&
         isArray(this.internalSchema.values[this.compo.field]) &&
@@ -115,8 +123,9 @@ export default {
         return VsTableSingleEditor
       } else {
         // debugger
-        return components[this.compo.type]
+        return vsform.components[this.compo.type]
       }
+    */
     },
     currentProperties(name) {
       return {
@@ -124,7 +133,8 @@ export default {
         node: name,
         designMode: this.designMode,
         options: this.options,
-        schemaManager: this.schemaManager
+        schemaManager: this.schemaManager,
+        selection: this.selection
       }
     },
     colAndRowSize(component) {
@@ -153,38 +163,15 @@ export default {
     },
     changeSelection(e) {
       if (!this.designMode) return
-      let sel = this.schemaManager.selection
-      if (e.shiftKey || e.ctrlKey) {
-        // multiselection
-        const ind = sel.selected.indexOf(this.compo.id)
-        if (ind === -1) {
-          sel.selected.push(this.compo.id)
-          sel.focused = this.compo.id
-        } else {
-          if (sel.selected.length > 1) {
-            sel.selected.splice(ind,1)
-            sel.focused = sel.selected[0]
-          }
-        }
-      } else {
-        // single sel.selectedection
-        sel.focused = this.compo.id
-        sel.selected = [this.compo.id]
-        // sel.selected.push(this.compo.id)
-      }
-      // console.log('focused', foc)
-      // console.log('sel.selectedected', sel.selected)
+      EventBus.$emit('changeSelection', this.compo.id, e.shiftKey || e.ctrlKey)
+      // Vue.nextTick(() => {
+      // console.log('selection', this.selection)
+      // })
     }
-  },
-  created() {
-    // updateSchemaIds(this.internalSchema)
   },
   components: {
     draggable
   },
-  mounted() {
-    // console.log('components', components)
-  }
 }
 </script>
 
@@ -199,6 +186,7 @@ export default {
   height: 10px;
   background: greenyellow;
   border: 1px solid #333;
+  z-index: 1;
 }
 
 .selected {
@@ -208,6 +196,7 @@ export default {
   height: 10px;
   background: lightgray;
   border: 1px solid #333;
+  z-index: 1;
 }
 
 </style>

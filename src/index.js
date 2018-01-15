@@ -17,16 +17,17 @@ export const vsform = {
   install(Vue, options) {
     Vue.component('vs-form', VsForm)
     Vue.component('vs-item', VsItem)
+  },
+  mixin: mixin1,
+  components: {
+    card: VsCard,
+    panel: VsPanel,
+    subschema: VsSubschema,
+    text: VsTextField,
+    checkbox: VsCheckbox,
+    slider: VsSlider
   }
+
 }
 
-export const mixin = mixin1
-
-export const components = {
-  card: VsCard,
-  panel: VsPanel,
-  subschema: VsSubschema,
-  text: VsTextField,
-  checkbox: VsCheckbox,
-  slider: VsSlider
-}
+export default vsform

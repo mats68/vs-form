@@ -1,12 +1,19 @@
 <template>
   <v-form>
-    <vs-item :schema="schema" :schemaManager="schemaManager" :designMode="designMode" :node="node"></vs-item>
+    <vs-item :schema="internalSchema" :schemaManager="schemaManager" :designMode="designMode" :selection="selection" :node="node"></vs-item>
   </v-form>
 </template>
 
 <script>
+import {SchemaManager} from 'vs-schema'
+import { EventBus } from './event-bus.js'
 
 export default {
+  data: () => ({
+    schemaManager: {},
+    internalSchema: {},
+    selection: []
+  }),
   props: {
     node: {
       type: String,
@@ -16,9 +23,8 @@ export default {
       type: Object,
       required: true
     },
-    schemaManager: {
-      type: Object,
-      required: true
+    listSchemas: {
+      type: Object
     },
     designMode: {
       type: Boolean,
@@ -26,11 +32,13 @@ export default {
     }
   },
   created() {
-    // updateSchemaIds(this.schema)
-    // console.log('created vs-form')
+    this.schemaManager = SchemaManager(this.schema, this.listSchemas)
+    this.internalSchema = this.schemaManager.schema
 
-    // console.log(formatJSON(this.schema))
+    EventBus.$on('changeSelection', (id, multiselect) => {
+      this.schemaManager.changeSelection(id, multiselect)
+      this.selection = this.schemaManager.selection
+    })
   }
 }
 </script>
-
