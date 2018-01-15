@@ -38,6 +38,7 @@ export default {
     EventBus.$on('changeSelection', (id, multiselect) => {
       this.schemaManager.changeSelection(id, multiselect)
       this.selection = this.schemaManager.selection
+      this.$emit('selectionChanged', this.selection)
     })
   }
 }
