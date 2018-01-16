@@ -36,7 +36,7 @@
       <!-- <br> {{test2}} -->
       <!-- <vs-item :schema="miniSchema" node="root" :designMode="designMode"></vs-item> -->
       <!-- <vs-form :schema="miniSchema" :designMode="designMode"></vs-form> -->
-      <vs-form :schema="schema" :listSchemas="listSchemas" :designMode="designMode"></vs-form>
+      <vs-form :schema="schema" :listSchemas="listSchemas" :designMode="designMode" v-on:valueUpdated="valueUpdated"></vs-form>
       {{schema.values}}
     </v-content>
   </v-app>
@@ -68,6 +68,9 @@ export default {
   computed: {
   },
   methods: {
+    valueUpdated(values) {
+      console.log('values1', JSON.stringify(values))
+    }
   },
   props: {
     source: String

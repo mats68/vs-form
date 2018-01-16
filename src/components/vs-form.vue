@@ -62,7 +62,7 @@ export default {
       // console.log('updateValue', fieldPath, value)
       // console.log('values', JSON.stringify(this.internalSchema.values, null, 2))
 
-      this.$emit('valueUpdated', fieldPath, value)
+      this.$emit('valueUpdated', this.internalSchema.values)
     })
   },
   updated() {
