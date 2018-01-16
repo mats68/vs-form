@@ -5,7 +5,10 @@
 </template>
 
 <script>
-import {SchemaManager} from 'vs-schema'
+// import {set} from 'lodash'
+import { has } from 'lodash'
+
+import { SchemaManager } from 'vs-schema'
 import { EventBus } from './event-bus.js'
 
 export default {
@@ -40,6 +43,30 @@ export default {
       this.selection = this.schemaManager.selection
       this.$emit('selectionChanged', this.selection)
     })
+
+    EventBus.$on('updateValue', (fieldPath, value) => {
+      // debugger
+      let obj = this.internalSchema.values
+      const arr = fieldPath.split('.')
+      let prop = arr[arr.length - 1]
+      // debugger
+      for (let ind = 0; ind < arr.length - 1; ind++) {
+        const key = arr[ind]
+        if (!has(obj, key)) {
+          this.$set(obj, key, {})
+        }
+        obj = obj[key]
+      }
+      this.$set(obj, prop, value)
+      // console.log(JSON.stringify(this.internalSchema.values))
+      // console.log('updateValue', fieldPath, value)
+      // console.log('values', JSON.stringify(this.internalSchema.values, null, 2))
+
+      this.$emit('valueUpdated', fieldPath, value)
+    })
+  },
+  updated() {
+    // console.log('updated')
   }
 }
 </script>

@@ -37,7 +37,7 @@
       <!-- <vs-item :schema="miniSchema" node="root" :designMode="designMode"></vs-item> -->
       <!-- <vs-form :schema="miniSchema" :designMode="designMode"></vs-form> -->
       <vs-form :schema="schema" :listSchemas="listSchemas" :designMode="designMode"></vs-form>
-      <!-- {{schema.values}} -->
+      {{schema.values}}
     </v-content>
   </v-app>
 </template>

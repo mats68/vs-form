@@ -1,4 +1,6 @@
-import Vue from 'vue'
+// import Vue from 'vue'
+
+import { EventBus } from './event-bus.js'
 
 export default {
   props: ['schema', 'node', 'designMode', 'options', 'schemaManager', 'selection'],
@@ -9,12 +11,13 @@ export default {
     editValue: {
       get() {
         if (this.compo && this.compo.field) {
-          return this.schema.values[this.compo.field]
+          // return this.schema.values[this.compo.field]
         }
       },
       set(newValue) {
-        if (this.compo && this.compo.field) {
-          Vue.set(this.schema.values, this.compo.field, newValue)
+        if (this.compo && this.compo.fieldPath) {
+          EventBus.$emit('updateValue', this.compo.fieldPath, newValue)
+          // Vue.set(this.schema.values, this.compo.field, newValue)
         }
       }
     },
