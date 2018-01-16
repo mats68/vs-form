@@ -68,7 +68,7 @@ export default {
   computed: {
   },
   methods: {
-    valueUpdated(values) {
+    valueUpdated(fieldPath, value, values) {
       console.log('values1', JSON.stringify(values))
     }
   },

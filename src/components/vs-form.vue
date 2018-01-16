@@ -34,7 +34,7 @@ export default {
       // console.log(JSON.stringify(this.internalSchema.values))
       // console.log('updateValue', fieldPath, value)
       // console.log('values', JSON.stringify(this.internalSchema.values, null, 2))
-      this.$emit('valueUpdated', this.internalSchema.values)
+      this.$emit('valueUpdated', fieldPath, value, this.internalSchema.values)
     }
   },
   props: {
