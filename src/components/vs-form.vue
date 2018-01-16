@@ -1,6 +1,6 @@
 <template>
   <v-form>
-    <vs-item :schema="internalSchema" :schemaManager="schemaManager" :designMode="designMode" :selection="selection" :node="node"></vs-item>
+    <vs-item :schema="internalSchema" :schemaManager="schemaManager" :designMode="designMode" :selection="selection" :node="node" v-on:updateValue="updateValue"></vs-item>
   </v-form>
 </template>
 
@@ -17,6 +17,26 @@ export default {
     internalSchema: {},
     selection: []
   }),
+  methods: {
+    updateValue(fieldPath, value) {
+      let obj = this.internalSchema.values
+      const arr = fieldPath.split('.')
+      let prop = arr[arr.length - 1]
+      // debugger
+      for (let ind = 0; ind < arr.length - 1; ind++) {
+        const key = arr[ind]
+        if (!has(obj, key)) {
+          this.$set(obj, key, {})
+        }
+        obj = obj[key]
+      }
+      this.$set(obj, prop, value)
+      // console.log(JSON.stringify(this.internalSchema.values))
+      // console.log('updateValue', fieldPath, value)
+      // console.log('values', JSON.stringify(this.internalSchema.values, null, 2))
+      this.$emit('valueUpdated', this.internalSchema.values)
+    }
+  },
   props: {
     node: {
       type: String,
@@ -42,27 +62,6 @@ export default {
       this.schemaManager.changeSelection(id, multiselect)
       this.selection = this.schemaManager.selection
       this.$emit('selectionChanged', this.selection)
-    })
-
-    EventBus.$on('updateValue', (fieldPath, value) => {
-      // debugger
-      let obj = this.internalSchema.values
-      const arr = fieldPath.split('.')
-      let prop = arr[arr.length - 1]
-      // debugger
-      for (let ind = 0; ind < arr.length - 1; ind++) {
-        const key = arr[ind]
-        if (!has(obj, key)) {
-          this.$set(obj, key, {})
-        }
-        obj = obj[key]
-      }
-      this.$set(obj, prop, value)
-      // console.log(JSON.stringify(this.internalSchema.values))
-      // console.log('updateValue', fieldPath, value)
-      // console.log('values', JSON.stringify(this.internalSchema.values, null, 2))
-
-      this.$emit('valueUpdated', this.internalSchema.values)
     })
   },
   updated() {

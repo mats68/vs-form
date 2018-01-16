@@ -1,11 +1,10 @@
-          selection.push(comp)
 <template>
   <div @click.stop="changeSelection($event)">
     <div v-if="designMode" :class="{focused: isFocused, selected: isSelected}"></div>
-    <component :is="currentView(node)" v-bind="currentProperties(node)">
+    <component :is="currentView(node)" v-bind="currentProperties(node)" v-on:updateValue="updateValue">
       <component v-if="isContainer" :is="isDraggable" class="grid-container grid-row" :style="gridStyle" :class="isDraggableClass" :options="dragOptions" v-model="itemList">
         <div v-for="component in itemList" :class="colAndRowSize(component)" :key="component.id">
-          <vs-item v-bind="currentProperties(component.node)"></vs-item>
+          <vs-item v-bind="currentProperties(component.node)" v-on:updateValue="updateValue"></vs-item>
         </div>
       </component>
     </component>
@@ -126,6 +125,9 @@ export default {
         return vsform.components[this.compo.type]
       }
     */
+    },
+    updateValue(fieldPath, value) {
+      this.$emit('updateValue', fieldPath, value)
     },
     currentProperties(name) {
       return {

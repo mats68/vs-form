@@ -1,6 +1,6 @@
 // import Vue from 'vue'
 
-import { EventBus } from './event-bus.js'
+// import { EventBus } from './event-bus.js'
 
 export default {
   props: ['schema', 'node', 'designMode', 'options', 'schemaManager', 'selection'],
@@ -16,7 +16,7 @@ export default {
       },
       set(newValue) {
         if (this.compo && this.compo.fieldPath) {
-          EventBus.$emit('updateValue', this.compo.fieldPath, newValue)
+          this.$emit('updateValue', this.compo.fieldPath, newValue)
           // Vue.set(this.schema.values, this.compo.field, newValue)
         }
       }
