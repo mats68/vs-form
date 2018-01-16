@@ -97,8 +97,9 @@ export default {
       }
     },
     dragOptions() {
+      // debugger
       return {
-        group: this.internalSchema.id,
+        group: this.internalSchema.id || this.internalSchema.name,
         disabled: !this.designMode
       }
     },
@@ -166,9 +167,6 @@ export default {
     changeSelection(e) {
       if (!this.designMode) return
       EventBus.$emit('changeSelection', this.compo.id, e.shiftKey || e.ctrlKey)
-      // Vue.nextTick(() => {
-      // console.log('selection', this.selection)
-      // })
     }
   },
   components: {

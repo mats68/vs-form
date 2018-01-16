@@ -6,10 +6,11 @@
 
 <script>
 // import {set} from 'lodash'
-import { has } from 'lodash'
+// import { has } from 'lodash'
 
 import { SchemaManager } from 'vs-schema'
 import { EventBus } from './event-bus.js'
+import {common} from 'vs-common'
 
 export default {
   data: () => ({
@@ -19,21 +20,7 @@ export default {
   }),
   methods: {
     updateValue(fieldPath, value) {
-      let obj = this.internalSchema.values
-      const arr = fieldPath.split('.')
-      let prop = arr[arr.length - 1]
-      // debugger
-      for (let ind = 0; ind < arr.length - 1; ind++) {
-        const key = arr[ind]
-        if (!has(obj, key)) {
-          this.$set(obj, key, {})
-        }
-        obj = obj[key]
-      }
-      this.$set(obj, prop, value)
-      // console.log(JSON.stringify(this.internalSchema.values))
-      // console.log('updateValue', fieldPath, value)
-      // console.log('values', JSON.stringify(this.internalSchema.values, null, 2))
+      common.updateObjValue(this.internalSchema.values, fieldPath, value)
       this.$emit('valueUpdated', fieldPath, value, this.internalSchema.values)
     }
   },

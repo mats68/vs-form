@@ -1,4 +1,4 @@
-// import Vue from 'vue'
+import {common} from 'vs-common'
 
 // import { EventBus } from './event-bus.js'
 
@@ -10,8 +10,8 @@ export default {
     },
     editValue: {
       get() {
-        if (this.compo && this.compo.field) {
-          // return this.schema.values[this.compo.field]
+        if (this.schemaManager.schema && this.compo && this.compo.fieldPath) {
+          return common.getObjValue(this.schemaManager.schema.values, this.compo.fieldPath)
         }
       },
       set(newValue) {
