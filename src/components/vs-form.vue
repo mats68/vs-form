@@ -23,7 +23,10 @@ export default {
     updateValue(fieldPath, value) {
       common.updateObjValue(this.internalSchema.values, fieldPath, value)
       this.$emit('valueUpdated', fieldPath, value, this.internalSchema.values)
-    }
+    },
+    // submit() {
+    //   alert('submit')
+    // }
   },
   props: {
     node: {
