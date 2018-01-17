@@ -16,8 +16,15 @@ export default {
       },
       set(newValue) {
         if (this.compo && this.compo.fieldPath) {
+          if (this.compo.onBeforeChange) {
+            const b = this.compo.onBeforeChange.bind(this.schemaManager.schema)
+            b(newValue)
+          }
           this.$emit('updateValue', this.compo.fieldPath, newValue)
-          // Vue.set(this.schema.values, this.compo.field, newValue)
+          if (this.compo.onChanged) {
+            const b = this.compo.onChange.bind(this.schemaManager.schema)
+            b()
+          }
         }
       }
     },

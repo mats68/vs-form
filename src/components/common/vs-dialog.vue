@@ -1,13 +1,16 @@
 <template>
-  <v-dialog v-model="showDialog" max-width="500px">
+  <v-dialog v-model="showDialog" persistent @keydown.esc="close" max-width="500px">
     <v-card>
       <v-card-title>
-        <span>{{title}}</span>
+        <h4>{{title}}</h4>
         <v-spacer></v-spacer>
       </v-card-title>
       <slot></slot>
-      <v-btn v-if="btnOk" @click="closeOk" flat color="blue">Ok</v-btn>
-      <v-btn v-if="btnCancel" @click="close" flat color="grey">Cancel</v-btn>
+      <v-card-actions>
+      <v-spacer></v-spacer>
+        <v-btn v-if="btnOk" @click="closeOk" flat color="blue darken-1">Ok</v-btn>
+        <v-btn v-if="btnCancel" @click="close" flat color="grey">Cancel</v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
@@ -16,11 +19,6 @@
 import { constants } from 'vs-common'
 
 export default {
-  data() {
-    return {
-      // show: true
-    }
-  },
   computed: {
     btnOk() {
       return this.buttons.indexOf(constants.buttons.btnOk) > -1
@@ -31,16 +29,18 @@ export default {
   },
   methods: {
     closeOk() {
-      // this.showDialog = false
       this.$emit('closeOk')
     },
     close() {
-      // this.show = false
-      this.$emit('close')
+      if (this.canClose) this.$emit('close')
     }
   },
   props: {
     showDialog: {
+      type: Boolean,
+      required: true
+    },
+    canClose: {
       type: Boolean,
       required: true
     },
