@@ -1,4 +1,5 @@
 import {common} from 'vs-common'
+import {fieldValidators} from 'vs-schema'
 
 // import { EventBus } from './event-bus.js'
 
@@ -31,7 +32,16 @@ export default {
       }
     },
     validations() {
-      return this.compo.validations ? [this.compo.validations] : []
+      let fns = []
+      if (this.compo.validations) {
+        if (this.compo.validations.required) {
+          fns.push(fieldValidators.required(this.compo.label))
+        }
+        if (this.compo.validations.validate) {
+          fns.push(this.compo.validations.validate)
+        }
+      }
+      return fns
     },
     label() {
       return this.compo ? this.compo.label : ''

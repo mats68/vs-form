@@ -1,5 +1,5 @@
 <template>
-  <v-form>
+  <v-form ref="form">
     <vs-item :schema="internalSchema" :schemaManager="schemaManager" :designMode="designMode" :selection="selection" :node="node" v-on:updateValue="updateValue"></vs-item>
   </v-form>
 </template>
@@ -24,9 +24,9 @@ export default {
       common.updateObjValue(this.internalSchema.values, fieldPath, value)
       this.$emit('valueUpdated', fieldPath, value, this.internalSchema.values)
     },
-    // submit() {
-    //   alert('submit')
-    // }
+    validate() {
+      return this.$refs.form.validate()
+    }
   },
   props: {
     node: {
@@ -53,8 +53,6 @@ export default {
     this.internalSchema = this.schemaManager.schema
     //to make values reactive
     this.internalSchema.values = cloneDeep(this.internalSchema.values)
-    if (this.schema.name === 'schemaNewComponent')
-    console.log('Schema-Values', this.schema.name, JSON.stringify(this.schemaManager.schema.values))
 
     EventBus.$on('changeSelection', (id, multiselect) => {
       this.schemaManager.changeSelection(id, multiselect)
