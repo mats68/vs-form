@@ -17,16 +17,12 @@ export default {
       },
       set(newValue) {
         if (this.compo && this.compo.fieldPath) {
-          if (this.compo.onBeforeChange) {
-            this.compo.onBeforeChange(newValue)
-            // const b = this.compo.onBeforeChange.bind(this.schemaManager.schema)
-            // b(newValue)
+          if (this.compo.beforeChange) {
+            this.compo.beforeChange(newValue)
           }
           this.$emit('updateValue', this.compo.fieldPath, newValue)
-          if (this.compo.onChanged) {
-            this.compo.onChanged()
-            // const b = this.compo.onChange.bind(this.schemaManager.schema)
-            // b()
+          if (this.compo.changed) {
+            this.compo.changed()
           }
         }
       }

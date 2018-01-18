@@ -8,7 +8,7 @@
 // import {set} from 'lodash'
 // import { has } from 'lodash'
 
-import { SchemaManager } from 'vs-schema'
+import { SchemaManager, resetSchemaValues } from 'vs-schema'
 import { EventBus } from './event-bus.js'
 import {common} from 'vs-common'
 import {cloneDeep} from 'lodash'
@@ -26,6 +26,11 @@ export default {
     },
     validate() {
       return this.$refs.form.validate()
+    },
+    reset() {
+      // reset values and errors
+      resetSchemaValues(this.internalSchema)
+      this.$refs.form.reset()
     }
   },
   props: {
