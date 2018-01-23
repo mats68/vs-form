@@ -71,6 +71,7 @@ export default {
         ) // getChildrenComponents(this.internalSchema, this.node)
       },
       set(value) {
+        //todo emit event
         if (this.designMode && this.compo) {
           const children = value.map(compo => compo.id)
           Vue.set(

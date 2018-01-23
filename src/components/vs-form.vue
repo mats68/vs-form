@@ -5,8 +5,6 @@
 </template>
 
 <script>
-// import {set} from 'lodash'
-// import { has } from 'lodash'
 
 import { SchemaManager, resetSchemaValues } from 'vs-schema'
 import { EventBus } from './event-bus.js'
@@ -31,7 +29,7 @@ export default {
       // reset values and errors
       resetSchemaValues(this.internalSchema)
       this.$refs.form.reset()
-    }
+    },
   },
   props: {
     node: {
@@ -56,7 +54,7 @@ export default {
       console.log('Schema-Errors', this.schema.name, this.schemaManager.errors)
     }
     this.internalSchema = this.schemaManager.schema
-    //to make values reactive
+    // to make values reactive
     this.internalSchema.values = cloneDeep(this.internalSchema.values)
 
     EventBus.$on('changeSelection', (id, multiselect) => {

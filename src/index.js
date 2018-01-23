@@ -13,14 +13,16 @@ import VsTextField from './components/fields/vs-text-field'
 import VsSlider from './components/fields/vs-slider'
 import VsCheckbox from './components/fields/vs-checkbox'
 
-// Dialog
+// common
 import VsDialog from './components/common/vs-dialog'
+import VsTree from './components/common/tree/vs-tree'
 
 export const vsform = {
   install(Vue, options) {
     Vue.component('vs-form', VsForm)
     Vue.component('vs-item', VsItem)
     Vue.component('vs-dialog', VsDialog)
+    Vue.component('vs-tree', VsTree)
   },
   mixin: mixin1,
   components: {

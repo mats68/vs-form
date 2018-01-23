@@ -55,9 +55,8 @@ export default {
   },
   mounted() {
     // this.show = this.showDialog
-    //console.log('dialog update')
+    // console.log('dialog update')
   },
-
 
 }
 </script>
