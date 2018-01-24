@@ -4,7 +4,34 @@ import {fieldValidators} from 'vs-schema'
 // import { EventBus } from './event-bus.js'
 
 export default {
-  props: ['schema', 'node', 'designMode', 'options', 'schemaManager', 'selection'],
+  props: {
+    node: {
+      type: String,
+      required: true
+    },
+    schema: {
+      type: Object,
+      required: true
+    },
+    schemaManager: {
+      type: Object,
+      required: true
+    },
+    designMode: {
+      type: Boolean,
+      default: false
+    },
+    selection: {
+      type: Array,
+      required: true
+    },
+    options: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    }
+  },
   computed: {
     compo() {
       return this.schema.components[this.node]

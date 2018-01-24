@@ -114,26 +114,13 @@ export default {
   methods: {
     currentView(name) {
       return vsform.components[this.compo.type]
-
-    /*       if (
-        this.compo &&
-        this.compo.field &&
-        isArray(this.internalSchema.values[this.compo.field]) &&
-        this.compo.type === this.internalSchema.components.text // array NUR Text-Felder erlaubt
-      ) {
-        return VsTableSingleEditor
-      } else {
-        // debugger
-        return vsform.components[this.compo.type]
-      }
-    */
     },
     updateValue(fieldPath, value) {
       this.$emit('updateValue', fieldPath, value)
     },
     currentProperties(name) {
       return {
-        schema: this.internalSchema,
+        schema: this.schema,
         node: name,
         designMode: this.designMode,
         options: this.options,
