@@ -31,6 +31,7 @@
     </v-toolbar>
     <v-content>
       <vs-form :schema="schema" :listSchemas="listSchemas" :designMode="designMode" v-on:valueUpdated="valueUpdated"></vs-form>
+      {{schema.values}}
     </v-content>
   </v-app>
 </template>

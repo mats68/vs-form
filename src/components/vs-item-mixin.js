@@ -70,6 +70,9 @@ export default {
     label() {
       return this.compo ? this.compo.label : ''
     },
+    disabled() {
+      return this.compo && this.compo.disabled ? this.compo.disabled : false
+    },
     color() {
       return this.compo && this.compo.color ? this.compo.color : ''
     },
@@ -81,6 +84,15 @@ export default {
     },
     style() {
       return this.compo ? this.compo.style : ''
+    },
+    fieldProperties() {
+      return {
+        label: this.label,
+        id: this.id,
+        items: this.items,
+        rules: this.validations,
+        disabled: this.disabled
+      }
     }
   },
   methods: {

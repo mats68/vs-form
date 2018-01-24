@@ -1,5 +1,5 @@
 <template>
-  <v-slider v-model="editValue" thumb-label :label="label" :id="id"></v-slider>
+  <v-slider v-model="editValue" v-bind="fieldProperties" thumb-label v-on:updateValue="updateValue"></v-slider>
 </template>
 
 <script>

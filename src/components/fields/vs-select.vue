@@ -1,5 +1,5 @@
 <template>
-  <v-select v-model="editValue" :label="label" :id="id" :items="items" :rules="validations"></v-select>
+  <v-select v-model="editValue" v-bind="fieldProperties" v-on:updateValue="updateValue"></v-select>
 </template>
 
 <script>
