@@ -37,8 +37,8 @@
       <!-- <vs-item :schema="miniSchema" node="root" :designMode="designMode"></vs-item> -->
       <!-- <vs-form :schema="miniSchema" :designMode="designMode"></vs-form> -->
       <vs-form :schema="schema" :listSchemas="listSchemas" :designMode="designMode" v-on:valueUpdated="valueUpdated"></vs-form>
-      <vs-tree :treeData="treeExample" canDragDrop checkboxes></vs-tree>
-      {{schema.values}}
+      <!-- <vs-tree :treeData="treeExample" canDragDrop checkboxes></vs-tree> -->
+      <!-- {{schema.values}} -->
     </v-content>
   </v-app>
 </template>

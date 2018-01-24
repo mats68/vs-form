@@ -1,10 +1,7 @@
 <template>
-  <v-expansion-panel-content>
-    <div slot="header">{{label}}</div>
-      <v-card>
-        <slot></slot>
-      </v-card>
-  </v-expansion-panel-content>
+  <v-card>
+    <slot></slot>
+  </v-card>
 </template>
 
 <script>
