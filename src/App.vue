@@ -37,6 +37,7 @@
       <!-- <vs-item :schema="miniSchema" node="root" :designMode="designMode"></vs-item> -->
       <!-- <vs-form :schema="miniSchema" :designMode="designMode"></vs-form> -->
       <vs-form :schema="schema" :listSchemas="listSchemas" :designMode="designMode" v-on:valueUpdated="valueUpdated"></vs-form>
+      <vs-tree :treeData="treeExample" canDragDrop checkboxes></vs-tree>
       {{schema.values}}
     </v-content>
   </v-app>
@@ -45,6 +46,7 @@
 <script>
 
 import {examples} from 'vs-schema'
+import treeExample from './components/common/tree/treeExample.js'
 // import Expr from 'expression-parser'
 // import math from 'mathjs'
 
@@ -63,7 +65,8 @@ export default {
     test:
       'Hallo ${ld.capitalize(v.vorname)} (${label("name")}: [name]) heute ist der ${date.format(curDate,"DD.MM.YYYY")}, Zeit ${date.format(curDate,"hh.mm.ss")}', // eslint-disable-line
     test1: '',
-    test2: ''
+    test2: '',
+    treeExample
   }),
   computed: {
   },

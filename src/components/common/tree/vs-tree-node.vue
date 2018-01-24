@@ -30,7 +30,7 @@ export default {
       if (this.item.checkState === constants.tree.checkState.unchecked) return 'check_box_outline_blank'
     },
     hasChildren() {
-      return has(this.item, 'children')  // this.item.children && this.item.children.length > 0
+      return has(this.item, 'children') // this.item.children && this.item.children.length > 0
     },
     itemStyle() {
       return {

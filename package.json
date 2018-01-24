@@ -85,7 +85,7 @@
     "lodash": "4.x",
     "vue": "2.x",
     "vuedraggable": "2.x",
-    "vuetify": "^1.x"
+    "vuetify": "1.x"
   },
   "engines": {
     "node": ">= 4.0.0",
