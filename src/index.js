@@ -8,6 +8,8 @@ import VsPanel from './components/containers/vs-panel'
 import VsSubschema from './components/containers/vs-subschema'
 import VsExpansionPanel from './components/containers/vs-expansion-panel'
 import VsExpansionPanelContent from './components/containers/vs-expansion-panel-content'
+import VsTabs from './components/containers/vs-tabs'
+import VsTab from './components/containers/vs-tab'
 
 // Fields
 // import VsTableSingleEditor from './components/fields/vs-table-single-editor'
@@ -33,6 +35,8 @@ export const vsform = {
     subschema: VsSubschema,
     expansionpanel: VsExpansionPanel,
     expansionpanelcontent: VsExpansionPanelContent,
+    tabs: VsTabs,
+    tab: VsTab,
     text: VsTextField,
     checkbox: VsCheckbox,
     slider: VsSlider

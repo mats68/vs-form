@@ -36,6 +36,9 @@ export default {
     compo() {
       return this.schema.components[this.node]
     },
+    panelList() {
+      return this.schema.components[this.node].panels.map(e => this.schema.components[e])
+    },
     editValue: {
       get() {
         if (this.schemaManager.schema && this.compo && this.compo.fieldPath) {
