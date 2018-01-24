@@ -76,6 +76,9 @@ export default {
     id() {
       return this.compo ? this.compo.id : ''
     },
+    items() {
+      return this.compo ? this.compo.data.items : ''
+    },
     style() {
       return this.compo ? this.compo.style : ''
     }

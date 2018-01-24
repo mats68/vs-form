@@ -16,6 +16,7 @@ import VsTab from './components/containers/vs-tab'
 import VsTextField from './components/fields/vs-text-field'
 import VsSlider from './components/fields/vs-slider'
 import VsCheckbox from './components/fields/vs-checkbox'
+import VsSelect from './components/fields/vs-select'
 
 // common
 import VsDialog from './components/common/vs-dialog'
@@ -38,6 +39,7 @@ export const vsform = {
     tabs: VsTabs,
     tab: VsTab,
     text: VsTextField,
+    select: VsSelect,
     checkbox: VsCheckbox,
     slider: VsSlider
   }
