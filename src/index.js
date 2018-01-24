@@ -6,6 +6,8 @@ import mixin1 from './components/vs-item-mixin'
 import VsCard from './components/containers/vs-card'
 import VsPanel from './components/containers/vs-panel'
 import VsSubschema from './components/containers/vs-subschema'
+import VsExpansionPanel from './components/containers/vs-expansion-panel'
+import VsExpansionPanelContent from './components/containers/vs-expansion-panel-content'
 
 // Fields
 // import VsTableSingleEditor from './components/fields/vs-table-single-editor'
@@ -29,6 +31,8 @@ export const vsform = {
     card: VsCard,
     panel: VsPanel,
     subschema: VsSubschema,
+    expansionpanel: VsExpansionPanel,
+    expansionpanelcontent: VsExpansionPanelContent,
     text: VsTextField,
     checkbox: VsCheckbox,
     slider: VsSlider
