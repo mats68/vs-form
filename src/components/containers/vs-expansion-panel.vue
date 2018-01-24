@@ -1,6 +1,6 @@
 <template>
   <v-expansion-panel>
-    <v-expansion-panel-content v-for="component in panelList" :key="component.id">
+    <v-expansion-panel-content v-for="component in getChildrenList" :key="component.id">
       <div slot="header">{{component.label}}</div>
       <vs-item v-bind="currentProperties(schema,component.node)"></vs-item>
     </v-expansion-panel-content>

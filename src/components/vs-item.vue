@@ -14,7 +14,7 @@
 <script>
 import Vue from 'vue'
 import draggable from 'vuedraggable'
-// import { isArray } from 'lodash'
+import { has } from 'lodash'
 
 import vsform from '../index'
 import { EventBus } from './event-bus.js'
@@ -36,6 +36,7 @@ export default {
           this.node
         )
       },
+      // set for drag drop
       set(value) {
         // todo emit event
         if (this.designMode && this.compo) {
@@ -49,7 +50,7 @@ export default {
       }
     },
     isContainer() {
-      return this.compo && this.compo.hasOwnProperty('children')
+      return this.compo && has(this.compo, 'children') && !has(this.compo, 'hasDirectChildren')
     },
     isDraggable() {
       return this.designMode ? 'draggable' : 'div'

@@ -1,8 +1,6 @@
 import {common} from 'vs-common'
 import {fieldValidators} from 'vs-schema'
 
-// import { EventBus } from './event-bus.js'
-
 export default {
   props: {
     node: {
@@ -36,8 +34,8 @@ export default {
     compo() {
       return this.schema.components[this.node]
     },
-    panelList() {
-      return this.schema.components[this.node].panels.map(e => this.schema.components[e])
+    getChildrenList() {
+      return this.schemaManager.getChildrenComponents(this.schema, this.node)
     },
     editValue: {
       get() {
