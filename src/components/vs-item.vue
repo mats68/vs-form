@@ -1,10 +1,10 @@
 <template>
   <div @click.stop="changeSelection($event)">
     <div v-if="designMode" :class="{focused: isFocused, selected: isSelected}"></div>
-    <component :is="currentView(node)" v-bind="currentProperties(node)" v-on:updateValue="updateValue">
+    <component :is="currentView(node)" v-bind="currentProperties(internalSchema,node)" v-on:updateValue="updateValue">
       <component v-if="isContainer" :is="isDraggable" class="grid-container grid-row" :style="gridStyle" :class="isDraggableClass" :options="dragOptions" v-model="itemList">
         <div v-for="component in itemList" :class="colAndRowSize(component)" :key="component.id">
-          <vs-item v-bind="currentProperties(component.node)" v-on:updateValue="updateValue"></vs-item>
+          <vs-item v-bind="currentProperties(internalSchema,component.node)" v-on:updateValue="updateValue"></vs-item>
         </div>
       </component>
     </component>
@@ -19,56 +19,23 @@ import draggable from 'vuedraggable'
 
 import vsform from '../index'
 import { EventBus } from './event-bus.js'
-
-// Fields
-// import VsTableSingleEditor from '../components/fields/vs-table-single-editor'
+import mixin from './vs-item-mixin'
 
 export default {
   name: 'vs-item',
+  mixins: [mixin],
   data: function() {
     return {
       internalSchema: this.schema, // nötig sonst geht drag drop nicht
     }
   },
-  props: {
-    node: {
-      type: String,
-      required: true
-    },
-    schema: {
-      type: Object,
-      required: true
-    },
-    schemaManager: {
-      type: Object,
-      required: true
-    },
-    designMode: {
-      type: Boolean,
-      default: false
-    },
-    selection: {
-      type: Array,
-      required: true
-    },
-    options: {
-      type: Object,
-      default: () => {
-        return {}
-      }
-    }
-  },
   computed: {
-    compo() {
-      return this.internalSchema.components[this.node]
-    },
     itemList: {
       get() {
-        // debugger
         return this.schemaManager.getChildrenComponents(
           this.internalSchema,
           this.node
-        ) // getChildrenComponents(this.internalSchema, this.node)
+        )
       },
       set(value) {
         // todo emit event
@@ -98,7 +65,6 @@ export default {
       }
     },
     dragOptions() {
-      // debugger
       return {
         group: this.internalSchema.id || this.internalSchema.name,
         disabled: !this.designMode
@@ -114,19 +80,6 @@ export default {
   methods: {
     currentView(name) {
       return vsform.components[this.compo.type]
-    },
-    updateValue(fieldPath, value) {
-      this.$emit('updateValue', fieldPath, value)
-    },
-    currentProperties(name) {
-      return {
-        schema: this.schema,
-        node: name,
-        designMode: this.designMode,
-        options: this.options,
-        schemaManager: this.schemaManager,
-        selection: this.selection
-      }
     },
     colAndRowSize(component) {
       // todo write test

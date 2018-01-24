@@ -30,15 +30,7 @@
       </v-btn>
     </v-toolbar>
     <v-content>
-      <!-- <v-text-field v-model="test"></v-text-field> -->
-      <!-- <v-btn @click="eval1">Eval</v-btn> -->
-      <!-- {{test1}} -->
-      <!-- <br> {{test2}} -->
-      <!-- <vs-item :schema="miniSchema" node="root" :designMode="designMode"></vs-item> -->
-      <!-- <vs-form :schema="miniSchema" :designMode="designMode"></vs-form> -->
       <vs-form :schema="schema" :listSchemas="listSchemas" :designMode="designMode" v-on:valueUpdated="valueUpdated"></vs-form>
-      <!-- <vs-tree :treeData="treeExample" canDragDrop checkboxes></vs-tree> -->
-      <!-- {{schema.values}} -->
     </v-content>
   </v-app>
 </template>

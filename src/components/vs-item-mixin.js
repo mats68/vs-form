@@ -78,5 +78,20 @@ export default {
     style() {
       return this.compo ? this.compo.style : ''
     }
+  },
+  methods: {
+    updateValue(fieldPath, value) {
+      this.$emit('updateValue', fieldPath, value)
+    },
+    currentProperties(schema, node) {
+      return {
+        schema,
+        node,
+        designMode: this.designMode,
+        options: this.options,
+        schemaManager: this.schemaManager,
+        selection: this.selection
+      }
+    },
   }
 }
