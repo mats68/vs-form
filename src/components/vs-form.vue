@@ -49,9 +49,9 @@ export default {
     }
   },
   created() {
-    this.schemaManager = SchemaManager(this.schema, this.listSchemas)
+    this.schemaManager = new SchemaManager(this.schema, this.listSchemas)
     if (this.schemaManager.errors > 0) {
-      console.log('Schema-Errors', this.schema.name, this.schemaManager.errors)
+      console.error('Schema-Errors', this.schema.name, this.schemaManager.errors)
     }
     this.internalSchema = this.schemaManager.schema
     // to make values reactive

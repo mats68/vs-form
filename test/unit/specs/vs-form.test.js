@@ -17,7 +17,7 @@ describe('VsForm miniSchema', () => {
   let Cmp
 
   beforeEach(() => {
-    let schemaManager = SchemaManager(examples.listSchemas.schemaCorrectType, examples.listSchemas)
+    let schemaManager = new SchemaManager(examples.listSchemas.schemaCorrectType, examples.listSchemas)
     let schema = schemaManager.schema
 
     Cmp = shallow(VsForm, {

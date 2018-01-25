@@ -31,10 +31,7 @@ export default {
   computed: {
     itemList: {
       get() {
-        return this.schemaManager.getChildrenComponents(
-          this.internalSchema,
-          this.node
-        )
+        return this.schemaManager.getChildrenComponents(this.internalSchema, this.node)
       },
       // set for drag drop
       set(value) {
