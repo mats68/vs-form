@@ -17,7 +17,6 @@ import draggable from 'vuedraggable'
 import { has } from 'lodash'
 
 import vsform from '../index'
-import { EventBus } from './event-bus.js'
 import mixin from './vs-item-mixin'
 
 export default {
@@ -68,10 +67,10 @@ export default {
       }
     },
     isFocused() {
-      return this.selection.length === 1 && this.selection[0] === this.compo
+      return this.schemaManager.selection.length === 1 && this.schemaManager.selection[0] === this.compo
     },
     isSelected() {
-      return !this.isFocused && this.selection.includes(this.compo)
+      return !this.isFocused && this.schemaManager.selection.includes(this.compo)
     }
   },
   methods: {
@@ -104,7 +103,7 @@ export default {
     },
     changeSelection(e) {
       if (!this.designMode) return
-      EventBus.$emit('changeSelection', this.compo.id, e.shiftKey || e.ctrlKey)
+      this.schemaManager.changeSelection(this.compo.id, e.shiftKey || e.ctrlKey)
     }
   },
   components: {

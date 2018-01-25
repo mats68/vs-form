@@ -19,10 +19,6 @@ export default {
       type: Boolean,
       default: false
     },
-    selection: {
-      type: Array,
-      required: true
-    },
     options: {
       type: Object,
       default: () => {
@@ -110,7 +106,6 @@ export default {
         designMode: this.designMode,
         options: this.options,
         schemaManager: this.schemaManager,
-        selection: this.selection
       }
     },
   }
