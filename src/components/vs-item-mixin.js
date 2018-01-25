@@ -70,6 +70,9 @@ export default {
     label() {
       return this.compo ? this.compo.label : ''
     },
+    placeholder() {
+      return this.compo && this.compo.placeholder ? this.compo.placeholder : ''
+    },
     disabled() {
       return this.compo && this.compo.disabled ? this.compo.disabled : false
     },
@@ -80,7 +83,7 @@ export default {
       return this.compo ? this.compo.id : ''
     },
     items() {
-      return this.compo ? this.compo.data.items : ''
+      return this.compo && this.compo.data && this.compo.data.items ? this.compo.data.items : ''
     },
     style() {
       return this.compo ? this.compo.style : ''
@@ -91,7 +94,8 @@ export default {
         id: this.id,
         items: this.items,
         rules: this.validations,
-        disabled: this.disabled
+        disabled: this.disabled,
+        placeholder: this.placeholder
       }
     }
   },
