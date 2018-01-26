@@ -47,6 +47,10 @@ export default {
     // if (this.schemaManager.errors > 0) {
     //   console.error('Schema-Errors', this.schema.name, this.schemaManager.errors)
     // }
+    if (this.schemaManager.errors.length > 0) {
+      console.error(`errors in schema: "${this.schemaManager.schema.name}"`)
+      console.log(this.schemaManager.printErrors())
+    }
     this.internalSchema = this.schemaManager.schema
     // to make values reactive
     this.internalSchema.values = cloneDeep(this.internalSchema.values)

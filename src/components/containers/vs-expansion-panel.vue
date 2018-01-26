@@ -2,7 +2,7 @@
   <v-expansion-panel>
     <v-expansion-panel-content v-for="component in getChildrenList" :key="component.id">
       <div slot="header">{{component.label}}</div>
-      <vs-item v-bind="currentProperties(schema,component.node)"></vs-item>
+      <vs-item v-bind="currentProperties(schema,component.node)" v-on:updateValue="updateValue"></vs-item>
     </v-expansion-panel-content>
   </v-expansion-panel>
 </template>
