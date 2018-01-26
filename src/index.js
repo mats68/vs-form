@@ -1,6 +1,6 @@
 import VsForm from './components/vs-form'
 import VsItem from './components/vs-item'
-import mixin1 from './components/vs-item-mixin'
+import mixin from './components/vs-item-mixin'
 
 // Containers
 import VsCard from './components/containers/vs-card'
@@ -30,7 +30,7 @@ export const vsform = {
     Vue.component('vs-dialog', VsDialog)
     Vue.component('vs-tree', VsTree)
   },
-  mixin: mixin1,
+  mixin,
   components: {
     card: VsCard,
     panel: VsPanel,

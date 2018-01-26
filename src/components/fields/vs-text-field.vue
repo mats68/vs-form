@@ -1,5 +1,5 @@
 <template>
-  <v-text-field v-model="editValue" v-bind="fieldProperties" v-on:updateValue="updateValue"></v-text-field>
+  <v-text-field v-model="editValue" v-bind="fieldProperties"></v-text-field>
 </template>
 
 <script>

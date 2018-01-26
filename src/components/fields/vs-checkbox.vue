@@ -1,5 +1,5 @@
 <template>
-  <v-checkbox v-model="editValue" v-bind="fieldProperties" v-on:updateValue="updateValue"></v-checkbox>
+  <v-checkbox v-model="editValue" v-bind="fieldProperties"></v-checkbox>
 </template>
 
 <script>
