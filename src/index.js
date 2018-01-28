@@ -18,6 +18,7 @@ import VsSlider from './components/fields/vs-slider'
 import VsCheckbox from './components/fields/vs-checkbox'
 import VsSelect from './components/fields/vs-select'
 import VsRadioGroup from './components/fields/vs-radio-group'
+import VsInteger from './components/fields/vs-integer'
 
 // common
 import VsDialog from './components/common/vs-dialog'
@@ -41,6 +42,7 @@ export const vsform = {
     tab: VsTab,
     text: VsTextField,
     select: VsSelect,
+    integer: VsInteger,
     radiogroup: VsRadioGroup,
     checkbox: VsCheckbox,
     slider: VsSlider

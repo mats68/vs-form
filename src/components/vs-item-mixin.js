@@ -41,13 +41,21 @@ export default {
       },
       set(newValue) {
         if (this.compo && this.compo.fieldPath) {
-          if (this.compo.beforeChange) {
+          debugger
+          const field = {value: newValue, changed: false}
+          this.beforeChange(field) // auf component-level definiert
+          if (field.changed) {
+            newValue = field.value
+          }
+          if (this.compo.beforeChange) { // auf schema definiert
             this.compo.beforeChange(newValue)
           }
           this.$emit('updateValue', this.compo.fieldPath, newValue)
           if (this.compo.changed) {
             this.compo.changed()
           }
+          field.value = common.getObjValue(this.schemaManager.schema.values, this.compo.fieldPath)
+          this.changed(field) // auf component-level definiert
         }
       }
     },
@@ -96,6 +104,12 @@ export default {
     }
   },
   methods: {
+    beforeChange(field) {
+      // nothing
+    },
+    changed(field) {
+      // nothing
+    },
     updateValue(fieldPath, value) {
       this.$emit('updateValue', fieldPath, value)
     },

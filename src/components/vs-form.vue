@@ -6,7 +6,7 @@
 
 <script>
 
-import { SchemaManager, resetSchemaValues } from 'vs-schema'
+import { resetSchemaValues } from 'vs-schema'
 import {common} from 'vs-common'
 import {cloneDeep} from 'lodash'
 
@@ -54,7 +54,6 @@ export default {
     this.internalSchema = this.schemaManager.schema
     // to make values reactive
     this.internalSchema.values = cloneDeep(this.internalSchema.values)
-
   },
   updated() {
     // console.log('updated')
