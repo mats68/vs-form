@@ -41,7 +41,6 @@ export default {
       },
       set(newValue) {
         if (this.compo && this.compo.fieldPath) {
-          debugger
           const field = {value: newValue, changed: false}
           this.beforeChange(field) // auf component-level definiert
           if (field.changed) {
@@ -54,8 +53,7 @@ export default {
           if (this.compo.changed) {
             this.compo.changed()
           }
-          field.value = common.getObjValue(this.schemaManager.schema.values, this.compo.fieldPath)
-          this.changed(field) // auf component-level definiert
+          this.changed() // auf component-level definiert
         }
       }
     },
