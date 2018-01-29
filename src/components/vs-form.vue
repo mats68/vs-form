@@ -7,7 +7,7 @@
 <script>
 
 import { resetSchemaValues } from 'vs-schema'
-import {common} from 'vs-common'
+// import {common} from 'vs-common'
 import {cloneDeep} from 'lodash'
 
 export default {
@@ -18,7 +18,7 @@ export default {
     updateValue(compo, value) {
       this.schemaManager.updateSchemaValue(compo, value)
       // common.updateObjValue(this.internalSchema.values, fieldPath, value)
-      this.$emit('valueUpdated', fieldPath, value, this.internalSchema.values)
+      this.$emit('valueUpdated', compo, value, this.internalSchema.values)
     },
     validate() {
       return this.$refs.form.validate()
