@@ -8,6 +8,10 @@ import 'vuetify/dist/vuetify.css'
 import {vsform} from './index'
 import 'src/styles/grid.scss'
 
+// let a = {b: 1}
+// let b = {...a}
+// console.log(b)
+
 Vue.use(Vuetify)
 // debugger
 Vue.use(vsform)

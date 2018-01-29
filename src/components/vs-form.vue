@@ -15,8 +15,9 @@ export default {
     internalSchema: {},
   }),
   methods: {
-    updateValue(fieldPath, value) {
-      common.updateObjValue(this.internalSchema.values, fieldPath, value)
+    updateValue(compo, value) {
+      this.schemaManager.updateSchemaValue(compo, value)
+      // common.updateObjValue(this.internalSchema.values, fieldPath, value)
       this.$emit('valueUpdated', fieldPath, value, this.internalSchema.values)
     },
     validate() {

@@ -8,8 +8,8 @@ import mixin from '../vs-item-mixin'
 export default {
   mixins: [mixin],
   methods: {
-    updateValue(fieldPath, value) {
-      this.$emit('updateValue', fieldPath, value)
+    updateValue(compo, value) {
+      this.$emit('updateValue', compo, value)
     },
   },
   created() {

@@ -25,11 +25,11 @@ export default {
           if (this.compo.beforeChange) { // auf schema definiert
             this.compo.beforeChange(newValue)
           }
-          this.$emit('updateValue', this.compo.fieldPath, newValue)
-          if (this.compo.changed) {
+          this.$emit('updateValue', this.compo, newValue)
+          if (this.compo.changed) { // auf component-level definiert
             this.compo.changed()
           }
-          this.changed() // auf component-level definiert
+          this.changed() // auf schema definiert
         }
       }
     },
@@ -84,8 +84,8 @@ export default {
     changed(field) {
       // nothing
     },
-    updateValue(fieldPath, value) {
-      this.$emit('updateValue', fieldPath, value)
+    updateValue(compo, value) {
+      this.$emit('updateValue', compo, value)
     },
     currentProperties(schema, node) {
       const props = schema.components[node] && schema.components[node].props ? schema.components[node].props : null
