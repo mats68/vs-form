@@ -2,30 +2,6 @@ import {common} from 'vs-common'
 import {fieldValidators} from 'vs-schema'
 
 export default {
-  props: {
-    node: {
-      type: String,
-      required: true
-    },
-    schema: {
-      type: Object,
-      required: true
-    },
-    schemaManager: {
-      type: Object,
-      required: true
-    },
-    designMode: {
-      type: Boolean,
-      default: false
-    },
-    options: {
-      type: Object,
-      default: () => {
-        return {}
-      }
-    }
-  },
   computed: {
     compo() {
       return this.schema.components[this.node]
@@ -112,13 +88,38 @@ export default {
       this.$emit('updateValue', fieldPath, value)
     },
     currentProperties(schema, node) {
+      const props = schema.components[node] && schema.components[node].props ? schema.components[node].props : null
       return {
         schema,
         node,
         designMode: this.designMode,
-        options: this.options,
+        ...props,
         schemaManager: this.schemaManager,
       }
     },
-  }
+  },
+  props: {
+    node: {
+      type: String,
+      required: true
+    },
+    schema: {
+      type: Object,
+      required: true
+    },
+    schemaManager: {
+      type: Object,
+      required: true
+    },
+    designMode: {
+      type: Boolean,
+      default: false
+    },
+    options: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    }
+  },
 }
