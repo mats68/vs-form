@@ -6,7 +6,6 @@
 
 <script>
 
-import { resetSchemaValues } from 'vs-schema'
 // import {common} from 'vs-common'
 import {cloneDeep} from 'lodash'
 
@@ -25,7 +24,7 @@ export default {
     },
     reset() {
       // reset values and errors
-      resetSchemaValues(this.internalSchema)
+      this.schemaManager.resetSchemaValues()
       this.$refs.form.reset()
     },
   },

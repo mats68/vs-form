@@ -1,4 +1,3 @@
-import {common} from 'vs-common'
 import {fieldValidators} from 'vs-schema'
 
 export default {
@@ -11,9 +10,7 @@ export default {
     },
     editValue: {
       get() {
-        if (this.schemaManager.schema && this.compo && this.compo.fieldPath) {
-          return common.getObjValue(this.schemaManager.schema.values, this.compo.fieldPath)
-        }
+        return this.schemaManager.getSchemaValue(this.compo)
       },
       set(newValue) {
         if (this.compo && this.compo.fieldPath) {
