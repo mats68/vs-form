@@ -48,11 +48,11 @@ export default {
     // },
     inc() {
       this.numberVal = (isNaN(this.number) ? 0 : Number(this.number) + 1).toString()
-      this.timer = setTimeout(this.inc, 100)
+      this.timer = setTimeout(this.inc, 150)
     },
     dec() {
       this.numberVal = (isNaN(this.number) ? 0 : Number(this.number) - 1).toString()
-      this.timer = setTimeout(this.dec, 100)
+      this.timer = setTimeout(this.dec, 150)
     },
     clear() {
       clearTimeout(this.timer)

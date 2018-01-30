@@ -23,10 +23,10 @@ export default {
             this.compo.beforeChange(newValue)
           }
           this.$emit('updateValue', this.compo, newValue)
-          if (this.compo.changed) { // auf component-level definiert
+          if (this.compo.changed) { // auf schema definiert
             this.compo.changed()
           }
-          this.changed() // auf schema definiert
+          this.changed() // auf component-level definiert
         }
       }
     },
@@ -86,13 +86,16 @@ export default {
     },
     currentProperties(schema, node) {
       const props = schema.components[node] && schema.components[node].props ? schema.components[node].props : null
-      return {
-        schema,
-        node,
-        designMode: this.designMode,
-        ...props,
-        schemaManager: this.schemaManager,
-      }
+      const {designMode, schemaManager} = this
+      const p = Object.assign({}, props, {schema, node, designMode, schemaManager})
+      return p
+      // return {
+      //   schema,
+      //   node,
+      //   designMode: this.designMode,
+      //   Object.assign({}, props), // ...props,
+      //   schemaManager: this.schemaManager,
+      // }
     },
   },
   props: {

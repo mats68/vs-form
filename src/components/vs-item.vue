@@ -16,6 +16,7 @@ import Vue from 'vue'
 import draggable from 'vuedraggable'
 import { has } from 'lodash'
 
+import { constants } from 'vs-common'
 import vsform from '../index'
 import mixin from './vs-item-mixin'
 
@@ -103,7 +104,12 @@ export default {
     },
     changeSelection(e) {
       if (!this.designMode) return
-      this.schemaManager.changeSelection(this.compo.id, e.shiftKey || e.ctrlKey)
+      this.schemaManager.beforeChangeSelection(constants.changeSel.undef)
+      this.$nextTick(function () {
+        if (this.schemaManager.canChangeSelection === constants.changeSel.yes) {
+          this.schemaManager.changeSelection(this.compo.id, e.shiftKey || e.ctrlKey)
+        }
+      })
     }
   },
   components: {

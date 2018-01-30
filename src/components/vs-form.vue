@@ -7,7 +7,7 @@
 <script>
 
 // import {common} from 'vs-common'
-import {cloneDeep} from 'lodash'
+import {has, cloneDeep} from 'lodash'
 
 export default {
   data: () => ({
@@ -20,7 +20,24 @@ export default {
       this.$emit('valueUpdated', compo, value, this.internalSchema.values)
     },
     validate() {
-      return this.$refs.form.validate()
+      let valOk = true
+      valOk = this.$refs.form.validate()
+      if (valOk === false) return false
+      // hack da validate nicht
+      let ar = { ar: [] }
+      const getAllChilds = (vm,arr) => {
+        const a = vm.$children
+        arr.ar = arr.ar.concat(a)
+        a.forEach(e => getAllChilds(e,arr))
+      }
+      getAllChilds(this.$refs.form,ar)
+      ar.ar.forEach(a => {
+        if (has(a,'errors') && a.errors.length > 0) {
+          valOk = false
+          return
+        }
+      })
+      return valOk
     },
     reset() {
       // reset values and errors
