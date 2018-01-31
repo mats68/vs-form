@@ -74,18 +74,8 @@ export default {
       return !((this.compo.data && this.compo.data.validations) || (this.hint))
     },
     fieldProperties() {
-      return {
-        label: this.label,
-        hint: this.hint,
-        persistentHint: true,
-        placeholder: this.placeholder,
-        id: this.id,
-        items: this.items,
-        rules: this.validations,
-        required: this.validations.length > 0,
-        disabled: this.disabled,
-        hideDetails: this.hideDetails,
-      }
+      const {label, hint, placeholder, id, items, disabled, hideDetails} = this
+      return Object.assign({}, this.compo.fieldProps, {label, hint, persistentHint: true, placeholder, id, items, rules: this.validations, required: this.validations.length > 0, disabled, hideDetails})
     }
   },
   methods: {
@@ -101,8 +91,7 @@ export default {
     currentProperties(schema, node) {
       const props = schema.components[node] && schema.components[node].props ? schema.components[node].props : null
       const {designMode, schemaManager} = this
-      const p = Object.assign({}, props, {schema, node, designMode, schemaManager})
-      return p
+      return Object.assign({}, props, {schema, node, designMode, schemaManager})
     },
   },
   props: {
