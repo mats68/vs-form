@@ -32,18 +32,21 @@ export default {
     },
     validations() {
       let fns = []
-      if (this.compo.validations) {
-        if (this.compo.validations.required) {
+      if (this.compo.data && this.compo.data.validations) {
+        if (this.compo.data.validations.required) {
           fns.push(fieldValidators.required(this.compo.label))
         }
-        if (this.compo.validations.validate) {
-          fns.push(this.compo.validations.validate)
+        if (this.compo.data.validations.validate) {
+          fns.push(this.compo.data.validations.validate)
         }
       }
       return fns
     },
     label() {
       return this.compo ? this.compo.label : ''
+    },
+    hint() {
+      return this.compo.hint ? this.compo.hint : ''
     },
     placeholder() {
       return this.compo && this.compo.placeholder ? this.compo.placeholder : ''
@@ -67,14 +70,21 @@ export default {
     style() {
       return this.compo ? this.compo.style : ''
     },
+    hideDetails() {
+      return !((this.compo.data && this.compo.data.validations) || (this.hint))
+    },
     fieldProperties() {
       return {
         label: this.label,
+        hint: this.hint,
+        persistentHint: true,
+        placeholder: this.placeholder,
         id: this.id,
         items: this.items,
         rules: this.validations,
+        required: this.validations.length > 0,
         disabled: this.disabled,
-        placeholder: this.placeholder,
+        hideDetails: this.hideDetails,
       }
     }
   },
