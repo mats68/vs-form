@@ -25,16 +25,15 @@ export default {
       if (valOk === false) return false
       // hack da validate nicht
       let ar = { ar: [] }
-      const getAllChilds = (vm,arr) => {
+      const getAllChilds = (vm, arr) => {
         const a = vm.$children
         arr.ar = arr.ar.concat(a)
-        a.forEach(e => getAllChilds(e,arr))
+        a.forEach(e => getAllChilds(e, arr))
       }
-      getAllChilds(this.$refs.form,ar)
+      getAllChilds(this.$refs.form, ar)
       ar.ar.forEach(a => {
-        if (has(a,'errors') && a.errors.length > 0) {
+        if (has(a, 'errors') && a.errors.length > 0) {
           valOk = false
-          return
         }
       })
       return valOk

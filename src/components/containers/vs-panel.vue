@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{label}}</p>
+    <div class="body-2">{{label}}</div>
     <slot></slot>
   </div>
 </template>
