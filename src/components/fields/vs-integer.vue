@@ -1,8 +1,8 @@
 <template>
   <div class="grid-container grid-row padding">
     <v-text-field v-model="numberVal" v-bind="fieldProperties" type="text" :class="width"></v-text-field>
-    <v-btn v-if="!hideButtons" @mousedown="inc" @mouseup="clear" class="xs-2 md-1" flat fab icon color="indigo"><v-icon>add_circle</v-icon></v-btn>
-    <v-btn v-if="!hideButtons" @mousedown="dec" @mouseup="clear" class="xs-2 md-1" flat fab icon color="indigo"><v-icon>remove_circle_outline</v-icon></v-btn>
+    <v-btn v-if="!hideButtons" @mousedown="inc" @mouseup="clear" class="xs-2 md-1" flat fab icon color="indigo" :disabled="disabled"><v-icon>add_circle</v-icon></v-btn>
+    <v-btn v-if="!hideButtons" @mousedown="dec" @mouseup="clear" class="xs-2 md-1" flat fab icon color="indigo" :disabled="disabled"><v-icon>remove_circle_outline</v-icon></v-btn>
   </div>
 </template>
 

@@ -2,7 +2,7 @@
   <div @click.stop="changeSelection($event)">
     <div v-if="designMode" :class="{focused: isFocused, selected: isSelected}"></div>
     <component :is="currentView(node)" v-bind="currentProperties(internalSchema,node)" v-on:updateValue="updateValue">
-      <component v-if="isContainer" :is="isDraggable" class="grid-container grid-row" :style="gridStyle" :class="isDraggableClass" :options="dragOptions" v-model="itemList">
+      <component v-if="isContainer" :is="isDraggable" :class="getContainerStyle" :style="gridStyle" :options="dragOptions" v-model="itemList">
         <div v-for="component in itemList" :class="colAndRowSize(component)" :key="component.id">
           <vs-item v-bind="currentProperties(internalSchema,component.node)" v-on:updateValue="updateValue"></vs-item>
         </div>
@@ -55,10 +55,22 @@ export default {
     isDraggableClass() {
       return this.designMode ? 'dragArea' : ''
     },
+    getContainerStyle() {
+      let cl = ''
+      if (this.compo.style && this.compo.style.dense) {
+        cl = 'grid-container-dense'
+      } else {
+        cl = 'grid-container'
+      }
+      if (this.designMode) {
+        cl = cl + ' dragArea'
+      }
+      return cl
+    },
     gridStyle() {
       return {
-        gridRowGap: '10px',
-        gridColumnGap: '10px'
+        // gridRowGap: '10px',
+        // gridColumnGap: '10px'
       }
     },
     dragOptions() {

@@ -49,7 +49,11 @@ export default {
       return this.compo && this.compo.placeholder ? this.compo.placeholder : ''
     },
     disabled() {
-      return this.compo && this.compo.disabled ? this.compo.disabled : false
+      if ((this.compo && this.compo.disabled === true) || this.designMode) {
+        return true
+      } else {
+        return false
+      }
     },
     color() {
       return this.compo && this.compo.color ? this.compo.color : ''
@@ -70,7 +74,7 @@ export default {
         items: this.items,
         rules: this.validations,
         disabled: this.disabled,
-        placeholder: this.placeholder
+        placeholder: this.placeholder,
       }
     }
   },
@@ -89,13 +93,6 @@ export default {
       const {designMode, schemaManager} = this
       const p = Object.assign({}, props, {schema, node, designMode, schemaManager})
       return p
-      // return {
-      //   schema,
-      //   node,
-      //   designMode: this.designMode,
-      //   Object.assign({}, props), // ...props,
-      //   schemaManager: this.schemaManager,
-      // }
     },
   },
   props: {
