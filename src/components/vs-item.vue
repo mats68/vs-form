@@ -1,13 +1,16 @@
 <template>
   <div @click.stop="changeSelection($event)">
     <div v-if="designMode" :class="{focused: isFocused, selected: isSelected}"></div>
-    <component :is="currentView(node)" v-bind="currentProperties(internalSchema,node)" v-on:updateValue="updateValue">
-      <component v-if="isContainer" :is="isDraggable" :class="getContainerStyle" :style="gridStyle" :options="dragOptions" v-model="itemList">
-        <div v-for="component in itemList" :class="colAndRowSize(component)" :key="component.id">
-          <vs-item v-bind="currentProperties(internalSchema,component.node)" v-on:updateValue="updateValue"></vs-item>
-        </div>
+    <v-tooltip bottom :disabled="tooltipDisabled">
+      <component :is="currentView(node)" v-bind="currentProperties(internalSchema,node)" v-on:updateValue="updateValue" slot="activator">
+        <component v-if="isContainer" :is="isDraggable" :class="getContainerStyle" :style="gridStyle" :options="dragOptions" v-model="itemList">
+          <div v-for="component in itemList" :class="colAndRowSize(component)" :key="component.id">
+            <vs-item v-bind="currentProperties(internalSchema,component.node)" v-on:updateValue="updateValue"></vs-item>
+          </div>
+        </component>
       </component>
-    </component>
+      <span>{{tooltip}}</span>
+    </v-tooltip>
   </div>
 </template>
 
@@ -72,6 +75,12 @@ export default {
         // gridRowGap: '10px',
         // gridColumnGap: '10px'
       }
+    },
+    tooltipDisabled() {
+      return !(this.compo && this.compo.tooltip)
+    },
+    tooltip() {
+      return this.compo && this.compo.tooltip ? this.compo.tooltip : ''
     },
     dragOptions() {
       return {
