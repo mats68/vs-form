@@ -84,10 +84,10 @@ module.exports = {
     hints: false
   },
   externals: {
-    vue: true,
-    vuetify: 'vuetify',
-    vuedraggable: 'vuedraggable',
-    lodash: true
+    'vue': 'Vue',
+    'vuetify': 'vuetify',
+    'vuedraggable': 'vuedraggable',
+    'lodash': 'lodash'
   },
   devtool: '#eval-source-map'
 }
