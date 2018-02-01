@@ -2,7 +2,7 @@
   "name": "vs-form",
   "version": "1.0.0",
   "description": "Schema Form with Vue and Vuetify",
-  "main": "dist-module/index.js",
+  "main": "dist/index.js",
   "author": "Matthias <mthaler@gmx.ch>",
   "private": true,
   "scripts": {
@@ -14,7 +14,7 @@
     "test": "yarn run unit && yarn run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
     "build": "node build/build.js",
-    "build-module": "cross-env NODE_ENV=development webpack --config webpack.config.module.js --progress --hide-modules --watch"
+    "build-module": "cross-env NODE_ENV=production webpack --config webpack.config.module.js --progress --hide-modules --watch"
   },
   "dependencies": {},
   "devDependencies": {

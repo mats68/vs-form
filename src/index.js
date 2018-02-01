@@ -24,7 +24,7 @@ import VsInteger from './components/fields/vs-integer'
 import VsDialog from './components/common/vs-dialog'
 import VsTree from './components/common/tree/vs-tree'
 
-export const vsform = {
+const vsform = {
   install(Vue, options) {
     Vue.component('vs-form', VsForm)
     Vue.component('vs-item', VsItem)
@@ -32,6 +32,7 @@ export const vsform = {
     Vue.component('vs-tree', VsTree)
   },
   mixin,
+  VsForm,
   components: {
     card: VsCard,
     panel: VsPanel,
