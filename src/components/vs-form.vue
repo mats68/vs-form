@@ -5,13 +5,12 @@
 </template>
 
 <script>
-
 // import {common} from 'vs-common'
-import {has, cloneDeep} from 'lodash'
+import { has, cloneDeep } from 'lodash'
 
 export default {
   data: () => ({
-    internalSchema: {},
+    internalSchema: {}
   }),
   methods: {
     updateValue(compo, value) {
@@ -25,12 +24,8 @@ export default {
       if (valOk === false) return false
       // hack da validate nicht
       let ar = { ar: [] }
-      const getAllChilds = (vm, arr) => {
-        const a = vm.$children
-        arr.ar = arr.ar.concat(a)
-        a.forEach(e => getAllChilds(e, arr))
-      }
-      getAllChilds(this.$refs.form, ar)
+      const fn = vm => ar.ar.push(vm)
+      this.processChildVMs(this.$refs.form, fn)
       ar.ar.forEach(a => {
         if (has(a, 'errors') && a.errors.length > 0) {
           valOk = false
@@ -38,11 +33,23 @@ export default {
       })
       return valOk
     },
+    getComponentById(id) {
+      let ar = { comp: null }
+      const fn = vm => {if (vm.id === id) {ar.comp = vm}}
+      this.processChildVMs(this.$refs.form, fn)
+      return ar.comp
+    },
     reset() {
       // reset values and errors
       this.schemaManager.resetSchemaValues()
       this.$refs.form.reset()
     },
+    processChildVMs(vm, fn) {
+      vm.$children.forEach(cvm => {
+        fn(cvm)
+        this.processChildVMs(cvm, fn)
+      })
+    }
   },
   props: {
     node: {
@@ -78,4 +85,5 @@ export default {
 </script>
 
 <style>
+
 </style>

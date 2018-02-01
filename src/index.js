@@ -33,6 +33,7 @@ const vsform = {
   },
   mixin,
   VsForm,
+  VsItem,
   components: {
     card: VsCard,
     panel: VsPanel,

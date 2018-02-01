@@ -1,11 +1,11 @@
 <template>
-  <div @click.stop="changeSelection($event)">
+  <div @click.stop="changeSelection($event)" class="selectDiv">
     <div v-if="designMode" :class="{focused: isFocused, selected: isSelected}"></div>
     <v-tooltip bottom :disabled="tooltipDisabled">
       <component :is="currentView(node)" v-bind="currentProperties(internalSchema,node)" v-on:updateValue="updateValue" slot="activator">
         <component v-if="isContainer" :is="isDraggable" :class="getContainerStyle" :style="gridStyle" :options="dragOptions" v-model="itemList">
           <div v-for="component in itemList" :class="colAndRowSize(component)" :key="component.id">
-            <vs-item v-bind="currentProperties(internalSchema,component.node)" v-on:updateValue="updateValue"></vs-item>
+            <vs-item v-bind="currentProperties(internalSchema,component.node)" v-on:updateValue="updateValue" :ref="component.id"></vs-item>
           </div>
         </component>
       </component>
@@ -89,7 +89,7 @@ export default {
       }
     },
     isFocused() {
-      return this.schemaManager.selection.length === 1 && this.schemaManager.selection[0] === this.compo
+      return this.schemaManager.selection.length >= 1 && this.schemaManager.selection[0] === this.compo
     },
     isSelected() {
       return !this.isFocused && this.schemaManager.selection.includes(this.compo)
