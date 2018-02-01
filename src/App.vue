@@ -38,7 +38,7 @@
 
 <script>
 
-import {examples, SchemaManager} from 'vs-schema'
+import {listSchemas, SchemaManager} from 'vs-schema'
 import treeExample from './components/common/tree/treeExample.js'
 // import Expr from 'expression-parser'
 // import math from 'mathjs'
@@ -69,7 +69,7 @@ export default {
     source: String
   },
   created() {
-    this.schemaManager = new SchemaManager(examples.listSchemas.schemaCorrectType, examples.listSchemas)
+    this.schemaManager = new SchemaManager(listSchemas.schemaCorrectType, listSchemas)
     if (this.schemaManager.errors > 0) {
       alert(`Schema: ${this.schemaManager.schema.name} hat Fehler`)
       alert(this.schemaManager.printErrors())

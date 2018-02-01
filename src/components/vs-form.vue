@@ -35,7 +35,7 @@ export default {
     },
     getComponentById(id) {
       let ar = { comp: null }
-      const fn = vm => {if (vm.id === id) {ar.comp = vm}}
+      const fn = vm => { if (vm.id === id) ar.comp = vm }
       this.processChildVMs(this.$refs.form, fn)
       return ar.comp
     },
