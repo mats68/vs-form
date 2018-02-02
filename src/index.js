@@ -24,6 +24,9 @@ import VsInteger from './components/fields/vs-integer'
 import VsDialog from './components/common/vs-dialog'
 import VsTree from './components/common/tree/vs-tree'
 
+// table
+import VsDataTable from './components/dataTable/vs-data-table'
+
 const vsform = {
   install(Vue, options) {
     Vue.component('vs-form', VsForm)
@@ -47,7 +50,8 @@ const vsform = {
     integer: VsInteger,
     radiogroup: VsRadioGroup,
     checkbox: VsCheckbox,
-    slider: VsSlider
+    slider: VsSlider,
+    dataTable: VsDataTable,
   }
 
 }
