@@ -70,8 +70,11 @@ export default {
     // if (this.schemaManager.errors > 0) {
     //   console.error('Schema-Errors', this.schema.name, this.schemaManager.errors)
     // }
-    if (this.schemaManager.errors.length > 0) {
+    if (this.schemaManager.getErrors().length > 0) {
       console.error(`errors in schema: "${this.schemaManager.schema.name}"`)
+      console.log(this.schemaManager.printErrors())
+    } else if (this.schemaManager.getWarnings().length > 0) {
+      console.error(`warnings in schema: "${this.schemaManager.schema.name}"`)
       console.log(this.schemaManager.printErrors())
     }
     this.internalSchema = this.schemaManager.schema
